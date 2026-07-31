@@ -134,7 +134,6 @@ def build_airport_reverse(data):
         ).upper()
 
 
-
         if city_code:
 
             result[
@@ -148,24 +147,21 @@ def build_airport_reverse(data):
             }
 
 
-
         for alias in info.get(
             "aliases",
             []
         ):
 
-            airport_code=str(
-                alias
-            ).upper()
-
+            # Use alias as key but map it to the canonical city_code (not alias upper())
+            alias_key = str(alias).lower()
 
             result[
-                airport_code.lower()
+                alias_key
             ]={
 
                 "city":city,
 
-                "airport":airport_code
+                "airport":city_code
 
             }
 
@@ -204,7 +200,6 @@ def build_datacenter_reverse(data):
             ] = code
 
 
-
         for alias in info.get(
             "aliases",
             []
@@ -216,7 +211,6 @@ def build_datacenter_reverse(data):
 
 
     return result
-
 
 
 city_reverse = build_city_reverse(
@@ -386,7 +380,7 @@ def detect_country(text):
                     "country":code,
 
                     "country_name":
-                        info.get("name","")
+                        info.get("name",")
                         if isinstance(info,dict)
                         else str(info),
 
@@ -429,11 +423,9 @@ def parse_location(text):
     }
 
 
-
     if not text:
 
         return result
-
 
 
     country=detect_country(text)
@@ -443,7 +435,6 @@ def parse_location(text):
         result.update(country)
 
 
-
     airport=detect_airport(text)
 
     if airport:
@@ -451,7 +442,6 @@ def parse_location(text):
         result["airport"]=airport["airport"]
 
         result["city"]=airport["city"]
-
 
 
     source=text.lower()
@@ -466,7 +456,6 @@ def parse_location(text):
             break
 
 
-
     dc=detect_datacenter(text)
 
     if dc:
@@ -474,11 +463,9 @@ def parse_location(text):
         result["datacenter"]=dc
 
 
-
     if not result["airport"] and result["datacenter"]:
 
         result["airport"]=result["datacenter"]
-
 
 
     if not result["airport"]:
@@ -488,7 +475,6 @@ def parse_location(text):
         if country_code in DEFAULT_AIRPORT:
 
             result["airport"]=DEFAULT_AIRPORT[country_code]
-
 
 
     return result
