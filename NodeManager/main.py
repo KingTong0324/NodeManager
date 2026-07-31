@@ -12,6 +12,8 @@ class NodeManagerApp:
         self.manager=NodeManager()
         self.window=self.load_ui()
         self.window.savedList.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        # clear selection when focus moves away from savedList
+        QApplication.instance().focusChanged.connect(self.on_focus_changed)
         self.bind_events()
         self.refresh_saved()
 
@@ -83,9 +85,11 @@ class NodeManagerApp:
             nodes.sort(key=lambda x:x.number)
 
             for node in nodes:
-                self.window.savedList.addItem(
-                    node.output_line("default")
-                )
+                item = QListWidgetItem(node.output_line("default"))
+                # mark as node and store the node object for accurate mapping
+                item.setData(Qt.UserRole, "node")
+                item.setData(Qt.UserRole + 1, node)
+                self.window.savedList.addItem(item)
 
         QTimer.singleShot(
             0,
@@ -100,25 +104,25 @@ class NodeManagerApp:
             if item.data(Qt.UserRole)=="country":
                 continue
 
-            node_index=0
-
-            for i in range(self.window.savedList.count()):
-                check=self.window.savedList.item(i)
-
-                if check==item:
-                    break
-
-                if check.data(Qt.UserRole)!="country":
-                    node_index+=1
-
-            nodes.append(
-                self.manager.get_saved()[node_index]
-            )
+            node = item.data(Qt.UserRole + 1)
+            if node:
+                nodes.append(node)
 
         return nodes
 
     def copy_library(self):
         nodes=self.get_selected_nodes()
+
+        # if nothing selected, copy the entire displayed library in the same order
+        if not nodes:
+            nodes = []
+            for i in range(self.window.savedList.count()):
+                item = self.window.savedList.item(i)
+                if item.data(Qt.UserRole) == "country":
+                    continue
+                node = item.data(Qt.UserRole + 1)
+                if node:
+                    nodes.append(node)
 
         if not nodes:
             return
@@ -143,6 +147,16 @@ class NodeManagerApp:
             )
 
         self.refresh_saved()
+
+    def on_focus_changed(self, old, new):
+        # if focus moved away from savedList (or its children), clear selection
+        try:
+            if old and (old is self.window.savedList or self.window.savedList.isAncestorOf(old)):
+                if not (new and (new is self.window.savedList or self.window.savedList.isAncestorOf(new))):
+                    self.window.savedList.clearSelection()
+        except Exception:
+            # ignore any unexpected errors during focus handling
+            pass
 
 if __name__=="__main__":
     app=QApplication(sys.argv)
