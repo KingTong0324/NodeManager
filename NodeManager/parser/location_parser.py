@@ -147,24 +147,11 @@ def build_airport_reverse(data):
             }
 
 
-        for alias in info.get(
-            "aliases",
-            []
-        ):
-
-            airport_code=str(
-                alias
-            ).upper()
-
-
-            result[
-                airport_code.lower()
-            ]={
-
-                "city":city,
-
-                "airport":airport_code
-
+        for alias in info.get("aliases", []):
+            # 把 alias 映射到 canonical city_code（不要用 alias.upper() 当 code）
+            result[str(alias).lower()] = {
+                "city": city,
+                "airport": city_code
             }
 
 
