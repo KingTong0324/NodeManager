@@ -212,7 +212,6 @@ class NodeConverter:
 
 
 
-
         # ======================
         # 速度
         # ======================
@@ -242,9 +241,7 @@ class NodeConverter:
         )
 
 
-
         return node
-
 
 
 
@@ -258,16 +255,15 @@ class NodeConverter:
 
         for node in nodes:
 
-            country = node.country or "OTHER"
+            # 按机房/机场代码编号，优先使用 airport，再使用 datacenter，最后退回到国家
+            key = node.airport or node.datacenter or node.country or "OTHER"
 
-
-            self.counters[country] += 1
+            self.counters[key] += 1
 
 
             node.number = (
-                f"{self.counters[country]:02d}"
+                f"{self.counters[key]:02d}"
             )
-
 
 
         return nodes
