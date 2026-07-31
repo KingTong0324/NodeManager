@@ -152,16 +152,18 @@ def build_airport_reverse(data):
             []
         ):
 
-            # Use alias as key but map it to the canonical city_code (not alias upper())
-            alias_key = str(alias).lower()
+            airport_code=str(
+                alias
+            ).upper()
+
 
             result[
-                alias_key
+                airport_code.lower()
             ]={
 
                 "city":city,
 
-                "airport":city_code
+                "airport":airport_code
 
             }
 
@@ -380,7 +382,7 @@ def detect_country(text):
                     "country":code,
 
                     "country_name":
-                        info.get("name",")
+                        info.get("name","")
                         if isinstance(info,dict)
                         else str(info),
 
