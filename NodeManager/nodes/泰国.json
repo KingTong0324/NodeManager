@@ -1,0 +1,19 @@
+[
+    {
+        "ip": "103.10.200.50",
+        "port": "443",
+        "country": "TH",
+        "country_name": "泰国",
+        "country_display": "🇹🇭 泰国",
+        "city": "",
+        "airport": "BKK",
+        "datacenter": "",
+        "latency": "",
+        "latency_value": null,
+        "speed": "12.5MB/s",
+        "speed_value": 12.5,
+        "speed_unit": "MB/s",
+        "speed_mbps": 100.0,
+        "number": "01"
+    }
+]

@@ -1,0 +1,36 @@
+[
+    {
+        "ip": "13.55.120.30",
+        "port": "443",
+        "country": "AU",
+        "country_name": "澳大利亚",
+        "country_display": "🇦🇺 澳大利亚",
+        "city": "",
+        "airport": "SYD",
+        "datacenter": "SYD",
+        "latency": "",
+        "latency_value": null,
+        "speed": "18.6MB/s",
+        "speed_value": 18.6,
+        "speed_unit": "MB/s",
+        "speed_mbps": 148.8,
+        "number": "01"
+    },
+    {
+        "ip": "3.25.40.90",
+        "port": "443",
+        "country": "AU",
+        "country_name": "澳大利亚",
+        "country_display": "🇦🇺 澳大利亚",
+        "city": "",
+        "airport": "SYD",
+        "datacenter": "",
+        "latency": "",
+        "latency_value": null,
+        "speed": "17.3MB/s",
+        "speed_value": 17.3,
+        "speed_unit": "MB/s",
+        "speed_mbps": 138.4,
+        "number": "02"
+    }
+]

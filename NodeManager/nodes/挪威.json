@@ -1,0 +1,19 @@
+[
+    {
+        "ip": "185.100.20.44",
+        "port": "443",
+        "country": "NO",
+        "country_name": "挪威",
+        "country_display": "🇳🇴 挪威",
+        "city": "",
+        "airport": "",
+        "datacenter": "",
+        "latency": "",
+        "latency_value": null,
+        "speed": "9.2MB/s",
+        "speed_value": 9.2,
+        "speed_unit": "MB/s",
+        "speed_mbps": 73.6,
+        "number": "01"
+    }
+]

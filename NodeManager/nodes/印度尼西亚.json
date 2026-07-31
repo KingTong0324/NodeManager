@@ -1,0 +1,19 @@
+[
+    {
+        "ip": "103.12.44.22",
+        "port": "443",
+        "country": "ID",
+        "country_name": "印度尼西亚",
+        "country_display": "🇮🇩 印度尼西亚",
+        "city": "",
+        "airport": "JKT",
+        "datacenter": "",
+        "latency": "",
+        "latency_value": null,
+        "speed": "10.9MB/s",
+        "speed_value": 10.9,
+        "speed_unit": "MB/s",
+        "speed_mbps": 87.2,
+        "number": "01"
+    }
+]

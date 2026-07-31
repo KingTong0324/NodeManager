@@ -1,0 +1,19 @@
+[
+    {
+        "ip": "94.130.50.22",
+        "port": "443",
+        "country": "AT",
+        "country_name": "奥地利",
+        "country_display": "🇦🇹 奥地利",
+        "city": "",
+        "airport": "",
+        "datacenter": "",
+        "latency": "",
+        "latency_value": null,
+        "speed": "11.8MB/s",
+        "speed_value": 11.8,
+        "speed_unit": "MB/s",
+        "speed_mbps": 94.4,
+        "number": "01"
+    }
+]

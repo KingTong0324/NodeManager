@@ -1,0 +1,53 @@
+[
+    {
+        "ip": "203.0.113.15",
+        "port": "443",
+        "country": "CN",
+        "country_name": "中国",
+        "country_display": "🇨🇳 中国",
+        "city": "",
+        "airport": "PEK",
+        "datacenter": "",
+        "latency": "",
+        "latency_value": null,
+        "speed": "32.1MB/s",
+        "speed_value": 32.1,
+        "speed_unit": "MB/s",
+        "speed_mbps": 256.8,
+        "number": "01"
+    },
+    {
+        "ip": "1.2.3.4",
+        "port": "8443",
+        "country": "CN",
+        "country_name": "中国",
+        "country_display": "🇨🇳 中国",
+        "city": "",
+        "airport": "PEK",
+        "datacenter": "",
+        "latency": "",
+        "latency_value": null,
+        "speed": "29.8MB/s",
+        "speed_value": 29.8,
+        "speed_unit": "MB/s",
+        "speed_mbps": 238.4,
+        "number": "02"
+    },
+    {
+        "ip": "116.31.116.20",
+        "port": "443",
+        "country": "CN",
+        "country_name": "中国",
+        "country_display": "🇨🇳 中国",
+        "city": "",
+        "airport": "PEK",
+        "datacenter": "",
+        "latency": "",
+        "latency_value": null,
+        "speed": "22.6MB/s",
+        "speed_value": 22.6,
+        "speed_unit": "MB/s",
+        "speed_mbps": 180.8,
+        "number": "03"
+    }
+]

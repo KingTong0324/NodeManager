@@ -1,0 +1,19 @@
+[
+    {
+        "ip": "185.60.40.88",
+        "port": "443",
+        "country": "CH",
+        "country_name": "瑞士",
+        "country_display": "🇨🇭 瑞士",
+        "city": "",
+        "airport": "ZRH",
+        "datacenter": "ZRH",
+        "latency": "",
+        "latency_value": null,
+        "speed": "12.9MB/s",
+        "speed_value": 12.9,
+        "speed_unit": "MB/s",
+        "speed_mbps": 103.2,
+        "number": "01"
+    }
+]

@@ -1,0 +1,19 @@
+[
+    {
+        "ip": "201.150.40.22",
+        "port": "443",
+        "country": "MX",
+        "country_name": "墨西哥",
+        "country_display": "🇲🇽 墨西哥",
+        "city": "",
+        "airport": "",
+        "datacenter": "",
+        "latency": "",
+        "latency_value": null,
+        "speed": "7.9MB/s",
+        "speed_value": 7.9,
+        "speed_unit": "MB/s",
+        "speed_mbps": 63.2,
+        "number": "01"
+    }
+]

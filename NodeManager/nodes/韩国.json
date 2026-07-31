@@ -1,0 +1,36 @@
+[
+    {
+        "ip": "8.8.8.8",
+        "port": "443",
+        "country": "KR",
+        "country_name": "韩国",
+        "country_display": "🇰🇷 韩国",
+        "city": "",
+        "airport": "SEL",
+        "datacenter": "SEL",
+        "latency": "",
+        "latency_value": null,
+        "speed": "18.8MB/s",
+        "speed_value": 18.8,
+        "speed_unit": "MB/s",
+        "speed_mbps": 150.4,
+        "number": "01"
+    },
+    {
+        "ip": "34.64.100.22",
+        "port": "443",
+        "country": "KR",
+        "country_name": "韩国",
+        "country_display": "🇰🇷 韩国",
+        "city": "",
+        "airport": "SEL",
+        "datacenter": "",
+        "latency": "",
+        "latency_value": null,
+        "speed": "20.5MB/s",
+        "speed_value": 20.5,
+        "speed_unit": "MB/s",
+        "speed_mbps": 164.0,
+        "number": "02"
+    }
+]

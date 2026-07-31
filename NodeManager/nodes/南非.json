@@ -1,0 +1,19 @@
+[
+    {
+        "ip": "154.0.10.88",
+        "port": "443",
+        "country": "ZA",
+        "country_name": "南非",
+        "country_display": "🇿🇦 南非",
+        "city": "",
+        "airport": "",
+        "datacenter": "",
+        "latency": "",
+        "latency_value": null,
+        "speed": "6.5MB/s",
+        "speed_value": 6.5,
+        "speed_unit": "MB/s",
+        "speed_mbps": 52.0,
+        "number": "01"
+    }
+]

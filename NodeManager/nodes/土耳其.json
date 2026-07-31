@@ -1,0 +1,19 @@
+[
+    {
+        "ip": "185.200.30.90",
+        "port": "443",
+        "country": "TR",
+        "country_name": "土耳其",
+        "country_display": "🇹🇷 土耳其",
+        "city": "",
+        "airport": "",
+        "datacenter": "",
+        "latency": "",
+        "latency_value": null,
+        "speed": "10.2MB/s",
+        "speed_value": 10.2,
+        "speed_unit": "MB/s",
+        "speed_mbps": 81.6,
+        "number": "01"
+    }
+]
