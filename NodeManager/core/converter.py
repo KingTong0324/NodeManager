@@ -1,4 +1,5 @@
 from collections import defaultdict
+import re
 
 from parser import (
     parse_ip,
@@ -113,6 +114,19 @@ class NodeConverter:
 
         location = parse_location(line) or {}
 
+        # 如果输入是已经格式化/不完整的形式（如 "#03_JP-HND"、"#HND"、"#03_JP"），
+        # 从 "#" 后面尝试提取提示并合并到 location 中以补全信息。
+        m = re.search(r"#\s*([^|]+)", line)
+        if m:
+            token = m.group(1).strip()
+            # 删除前导序号/下划线，例如 "03_JP-HND" -> "JP-HND"
+            token = re.sub(r"^\d+[_\s-]*", "", token)
+            # 把 token 传给 parse_location 作为 hint（parse_location 能识别国家/机场别名）
+            hint = parse_location(token) or {}
+
+            for k in ("country", "country_name", "country_display", "city", "airport", "datacenter"):
+                if not location.get(k) and hint.get(k):
+                    location[k] = hint[k]
 
 
         node.country = location.get(
