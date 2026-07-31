@@ -255,8 +255,19 @@ class NodeConverter:
 
         for node in nodes:
 
-            # 按机房/机场代码编号，优先使用 airport，再使用 datacenter，最后退回到国家
-            key = node.airport or node.datacenter or node.country or "OTHER"
+            # 如果是日本节点，按国家统一编号（保证日本连续编号）
+            is_japan = (
+                (node.country and str(node.country).upper() == "JP")
+                or (node.country_name == "日本")
+                or ("日本" in (node.country_display or ""))
+            )
+
+            if is_japan:
+                # 按国家编号（所有日本节点共用一个计数器）
+                key = "JP"
+            else:
+                # 其他国家按机房/机场代码编号，优先使用 airport，再使用 datacenter，最后退回到国家
+                key = node.airport or node.datacenter or node.country or "OTHER"
 
             self.counters[key] += 1
 
