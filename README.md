@@ -1,4 +1,4 @@
-# NodeManager
+# NodeManager for Cloudflare优选ip
 节点整理器（仅支持IPV4）
 
 ## 项目概览
