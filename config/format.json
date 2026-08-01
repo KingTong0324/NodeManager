@@ -1,0 +1,11 @@
+{
+    "default": "{ip}:{port}#{country_display}{number}_{code}|{speed}",
+    "simple": "{country_display}{number}_{code}",
+    "speed": "{country_display}{number}_{code}|{speed}",
+    "detail": "{ip}:{port}#{country_display}{number}_{city}_{code}|延迟:{latency}|速度:{speed}",
+    "full": "{ip}:{port}#{country_display}{number}_{city}_{code}|延迟:{latency}|速度:{speed}|机房:{datacenter}",
+    "debug": "{ip}:{port} {country} {country_name} {city} {airport} {datacenter} {latency} {speed}",
+    "custom_1": "{country_display}{number}_{code}|{speed}|{latency}",
+    "custom_2": "{country_display}-{number}-{city}-{code}",
+    "custom_3": "[{country}] {country_display}{number}_{code} {ip}:{port}"
+}

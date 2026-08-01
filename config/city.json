@@ -1,0 +1,572 @@
+{
+    "上海": {
+        "code": "SHA",
+        "aliases": [
+            "Shanghai",
+            "shanghai",
+            "CN-Shanghai",
+            "China-Shanghai",
+            "Shanghai01",
+            "Shanghai-01"
+        ]
+    },
+    "北京": {
+        "code": "BJS",
+        "aliases": [
+            "Beijing",
+            "beijing",
+            "CN-Beijing",
+            "China-Beijing"
+        ]
+    },
+    "广州": {
+        "code": "CAN",
+        "aliases": [
+            "Guangzhou",
+            "guangzhou",
+            "CN-Guangzhou",
+            "China-Guangzhou"
+        ]
+    },
+    "深圳": {
+        "code": "SZX",
+        "aliases": [
+            "Shenzhen",
+            "shenzhen",
+            "CN-Shenzhen",
+            "China-Shenzhen"
+        ]
+    },
+    "杭州": {
+        "code": "HGH",
+        "aliases": [
+            "Hangzhou",
+            "hangzhou"
+        ]
+    },
+    "南京": {
+        "code": "NKG",
+        "aliases": [
+            "Nanjing",
+            "nanjing"
+        ]
+    },
+    "成都": {
+        "code": "CTU",
+        "aliases": [
+            "Chengdu",
+            "chengdu"
+        ]
+    },
+    "重庆": {
+        "code": "CKG",
+        "aliases": [
+            "Chongqing",
+            "chongqing"
+        ]
+    },
+    "武汉": {
+        "code": "WUH",
+        "aliases": [
+            "Wuhan",
+            "wuhan"
+        ]
+    },
+    "西安": {
+        "code": "XIY",
+        "aliases": [
+            "Xian",
+            "Xi'an",
+            "xian"
+        ]
+    },
+    "青岛": {
+        "code": "TAO",
+        "aliases": [
+            "Qingdao",
+            "CN-Qingdao"
+        ]
+    },
+    "天津": {
+        "code": "TSN",
+        "aliases": [
+            "Tianjin",
+            "CN-Tianjin"
+        ]
+    },
+    "厦门": {
+        "code": "XMN",
+        "aliases": [
+            "Xiamen",
+            "CN-Xiamen"
+        ]
+    },
+    "长沙": {
+        "code": "CSX",
+        "aliases": [
+            "Changsha",
+            "CN-Changsha"
+        ]
+    },
+    "合肥": {
+        "code": "HFE",
+        "aliases": [
+            "Hefei",
+            "CN-Hefei"
+        ]
+    },
+    "济南": {
+        "code": "TNA",
+        "aliases": [
+            "Jinan",
+            "CN-Jinan"
+        ]
+    },
+    "郑州": {
+        "code": "CGO",
+        "aliases": [
+            "Zhengzhou",
+            "CN-Zhengzhou"
+        ]
+    },
+    "东京": {
+        "code": "TYO",
+        "aliases": [
+            "Tokyo",
+            "tokyo",
+            "TYO",
+            "NRT",
+            "HND",
+            "Narita",
+            "Haneda",
+            "Tokyo01",
+            "Tokyo-01",
+            "JP-Tokyo",
+            "Japan-Tokyo"
+        ]
+    },
+    "大阪": {
+        "code": "OSA",
+        "aliases": [
+            "Osaka",
+            "osaka",
+            "OSA",
+            "KIX",
+            "Japan-Osaka",
+            "JP-Osaka"
+        ]
+    },
+    "名古屋": {
+        "code": "NGO",
+        "aliases": [
+            "Nagoya",
+            "nagoya",
+            "NGO"
+        ]
+    },
+    "福冈": {
+        "code": "FUK",
+        "aliases": [
+            "Fukuoka",
+            "FUK",
+            "Japan-Fukuoka"
+        ]
+    },
+    "札幌": {
+        "code": "SPK",
+        "aliases": [
+            "Sapporo",
+            "Japan-Sapporo"
+        ]
+    },
+    "冲绳": {
+        "code": "OKA",
+        "aliases": [
+            "Okinawa",
+            "Japan-Okinawa"
+        ]
+    },
+    "首尔": {
+        "code": "SEL",
+        "aliases": [
+            "Seoul",
+            "seoul",
+            "KR-Seoul",
+            "Korea-Seoul"
+        ]
+    },
+    "釜山": {
+        "code": "PUS",
+        "aliases": [
+            "Busan",
+            "Korea-Busan"
+        ]
+    },
+    "新加坡": {
+        "code": "SIN",
+        "aliases": [
+            "Singapore",
+            "singapore",
+            "SG"
+        ]
+    },
+    "香港": {
+        "code": "HKG",
+        "aliases": [
+            "Hong Kong",
+            "HongKong",
+            "hongkong",
+            "HK"
+        ]
+    },
+    "台北": {
+        "code": "TPE",
+        "aliases": [
+            "Taipei",
+            "taipei",
+            "TW-Taipei"
+        ]
+    },
+    "曼谷": {
+        "code": "BKK",
+        "aliases": [
+            "Bangkok",
+            "Thailand-Bangkok"
+        ]
+    },
+    "吉隆坡": {
+        "code": "KUL",
+        "aliases": [
+            "Kuala Lumpur",
+            "KualaLumpur"
+        ]
+    },
+    "马尼拉": {
+        "code": "MNL",
+        "aliases": [
+            "Manila",
+            "Philippines-Manila"
+        ]
+    },
+    "雅加达": {
+        "code": "JKT",
+        "aliases": [
+            "Jakarta",
+            "Indonesia-Jakarta"
+        ]
+    },
+    "河内": {
+        "code": "HAN",
+        "aliases": [
+            "Hanoi",
+            "Vietnam-Hanoi"
+        ]
+    },
+    "胡志明": {
+        "code": "SGN",
+        "aliases": [
+            "Ho Chi Minh",
+            "Saigon",
+            "Vietnam-HoChiMinh"
+        ]
+    },
+    "新德里": {
+        "code": "DEL",
+        "aliases": [
+            "Delhi",
+            "New Delhi"
+        ]
+    }
+}
+,
+    "洛杉矶": {
+        "code": "LAX",
+        "aliases": [
+            "Los Angeles",
+            "LosAngeles",
+            "LA",
+            "US-LosAngeles",
+            "USA-LosAngeles"
+        ]
+    },
+    "圣何塞": {
+        "code": "SJC",
+        "aliases": [
+            "San Jose",
+            "SanJose",
+            "Silicon Valley"
+        ]
+    },
+    "旧金山": {
+        "code": "SFO",
+        "aliases": [
+            "San Francisco",
+            "SanFrancisco",
+            "SF"
+        ]
+    },
+    "西雅图": {
+        "code": "SEA",
+        "aliases": [
+            "Seattle",
+            "seattle"
+        ]
+    },
+    "芝加哥": {
+        "code": "CHI",
+        "aliases": [
+            "Chicago",
+            "chicago"
+        ]
+    },
+    "达拉斯": {
+        "code": "DFW",
+        "aliases": [
+            "Dallas",
+            "dallas"
+        ]
+    },
+    "亚特兰大": {
+        "code": "ATL",
+        "aliases": [
+            "Atlanta",
+            "atlanta"
+        ]
+    },
+    "迈阿密": {
+        "code": "MIA",
+        "aliases": [
+            "Miami",
+            "miami"
+        ]
+    },
+    "华盛顿": {
+        "code": "WAS",
+        "aliases": [
+            "Washington",
+            "Washington DC",
+            "WashingtonDC"
+        ]
+    },
+    "纽约": {
+        "code": "NYC",
+        "aliases": [
+            "New York",
+            "NewYork",
+            "NY"
+        ]
+    },
+    "纽瓦克": {
+        "code": "EWR",
+        "aliases": [
+            "Newark"
+        ]
+    },
+    "多伦多": {
+        "code": "YYZ",
+        "aliases": [
+            "Toronto",
+            "toronto"
+        ]
+    },
+    "温哥华": {
+        "code": "YVR",
+        "aliases": [
+            "Vancouver",
+            "vancouver"
+        ]
+    },
+    "伦敦": {
+        "code": "LON",
+        "aliases": [
+            "London",
+            "london",
+            "UK-London",
+            "GB-London"
+        ]
+    },
+    "曼彻斯特": {
+        "code": "MAN",
+        "aliases": [
+            "Manchester"
+        ]
+    },
+    "法兰克福": {
+        "code": "FRA",
+        "aliases": [
+            "Frankfurt",
+            "Germany-Frankfurt",
+            "DE-Frankfurt"
+        ]
+    },
+    "柏林": {
+        "code": "BER",
+        "aliases": [
+            "Berlin",
+            "berlin"
+        ]
+    },
+    "慕尼黑": {
+        "code": "MUC",
+        "aliases": [
+            "Munich",
+            "Munchen"
+        ]
+    },
+    "阿姆斯特丹": {
+        "code": "AMS",
+        "aliases": [
+            "Amsterdam",
+            "Netherlands-Amsterdam",
+            "NL-Amsterdam"
+        ]
+    },
+    "巴黎": {
+        "code": "PAR",
+        "aliases": [
+            "Paris",
+            "paris"
+        ]
+    },
+    "苏黎世": {
+        "code": "ZRH",
+        "aliases": [
+            "Zurich",
+            "Switzerland-Zurich"
+        ]
+    },
+    "维也纳": {
+        "code": "VIE",
+        "aliases": [
+            "Vienna",
+            "Austria-Vienna"
+        ]
+    },
+    "斯德哥尔摩": {
+        "code": "STO",
+        "aliases": [
+            "Stockholm"
+        ]
+    },
+    "哥本哈根": {
+        "code": "CPH",
+        "aliases": [
+            "Copenhagen"
+        ]
+    },
+    "奥斯陆": {
+        "code": "OSL",
+        "aliases": [
+            "Oslo"
+        ]
+    },
+    "赫尔辛基": {
+        "code": "HEL",
+        "aliases": [
+            "Helsinki"
+        ]
+    },
+    "华沙": {
+        "code": "WAW",
+        "aliases": [
+            "Warsaw"
+        ]
+    },
+    "布拉格": {
+        "code": "PRG",
+        "aliases": [
+            "Prague"
+        ]
+    },
+    "伊斯坦布尔": {
+        "code": "IST",
+        "aliases": [
+            "Istanbul",
+            "Turkey-Istanbul"
+        ]
+    },
+    "迪拜": {
+        "code": "DXB",
+        "aliases": [
+            "Dubai",
+            "UAE-Dubai"
+        ]
+    },
+    "多哈": {
+        "code": "DOH",
+        "aliases": [
+            "Doha",
+            "Qatar-Doha"
+        ]
+    },
+    "约翰内斯堡": {
+        "code": "JNB",
+        "aliases": [
+            "Johannesburg"
+        ]
+    },
+    "圣保罗": {
+        "code": "SAO",
+        "aliases": [
+            "Sao Paulo",
+            "SaoPaulo",
+            "Brazil-SaoPaulo"
+        ]
+    },
+    "墨西哥城": {
+        "code": "MEX",
+        "aliases": [
+            "Mexico City",
+            "MexicoCity"
+        ]
+    },
+    "圣地亚哥": {
+        "code": "SCL",
+        "aliases": [
+            "Santiago",
+            "Chile-Santiago"
+        ]
+    },
+    "悉尼": {
+        "code": "SYD",
+        "aliases": [
+            "Sydney"
+        ]
+    },
+    "墨尔本": {
+        "code": "MEL",
+        "aliases": [
+            "Melbourne"
+        ]
+    },
+    "利马": {
+        "code": "LIM",
+        "aliases": [
+            "Lima"
+        ]
+    },
+    "布宜诺斯艾利斯": {
+        "code": "EZE",
+        "aliases": [
+            "Buenos Aires"
+        ]
+    },
+    "开普敦": {
+        "code": "CPT",
+        "aliases": [
+            "Cape Town"
+        ]
+    },
+    "特拉维夫": {
+        "code": "TLV",
+        "aliases": [
+            "Tel Aviv"
+        ]
+    },
+    "伊斯兰堡": {
+        "code": "ISB",
+        "aliases": [
+            "Islamabad"
+        ]
+    }
+}

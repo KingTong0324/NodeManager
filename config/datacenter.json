@@ -1,0 +1,223 @@
+{
+    "东京": {
+        "code": "TYO",
+        "aliases": [
+            "ap-northeast-1",
+            "asia-northeast1",
+            "japaneast",
+            "Japan East",
+            "Tokyo Region",
+            "Tokyo DC",
+            "Tokyo Data Center"
+        ]
+    },
+
+    "大阪": {
+        "code": "OSA",
+        "aliases": [
+            "ap-northeast-3",
+            "Osaka Region",
+            "Kansai",
+            "Japan West"
+        ]
+    },
+
+    "首尔": {
+        "code": "SEL",
+        "aliases": [
+            "ap-northeast-2",
+            "asia-northeast3",
+            "Koreacentral",
+            "Korea Central",
+            "Seoul Region"
+        ]
+    },
+
+    "新加坡": {
+        "code": "SIN",
+        "aliases": [
+            "ap-southeast-1",
+            "asia-southeast1",
+            "southeastasia",
+            "Singapore Region",
+            "Singapore DC"
+        ]
+    },
+
+    "香港": {
+        "code": "HKG",
+        "aliases": [
+            "ap-east-1",
+            "asia-east2",
+            "Hong Kong Region",
+            "HongKong DC"
+        ]
+    },
+
+    "台北": {
+        "code": "TPE",
+        "aliases": [
+            "Taiwan Region",
+            "Taipei Region",
+            "Taipei DC"
+        ]
+    },
+
+    "洛杉矶": {
+        "code": "LAX",
+        "aliases": [
+            "us-west-2",
+            "westus",
+            "West US",
+            "California West",
+            "Los Angeles Region"
+        ]
+    },
+
+    "圣何塞": {
+        "code": "SJC",
+        "aliases": [
+            "us-west-1",
+            "Silicon Valley",
+            "San Jose Region"
+        ]
+    },
+
+    "西雅图": {
+        "code": "SEA",
+        "aliases": [
+            "Seattle Region",
+            "Washington West"
+        ]
+    },
+
+    "旧金山": {
+        "code": "SFO",
+        "aliases": [
+            "San Francisco Region",
+            "Bay Area DC"
+        ]
+    },
+
+    "纽约": {
+        "code": "NYC",
+        "aliases": [
+            "us-east-1",
+            "East US",
+            "New York Region"
+        ]
+    },
+
+    "华盛顿": {
+        "code": "WAS",
+        "aliases": [
+            "East US 2",
+            "Virginia Region",
+            "US East"
+        ]
+    },
+
+    "多伦多": {
+        "code": "YYZ",
+        "aliases": [
+            "ca-central-1",
+            "Canada Central",
+            "Toronto Region"
+        ]
+    },
+
+    "伦敦": {
+        "code": "LON",
+        "aliases": [
+            "eu-west-2",
+            "europe-west2",
+            "UK South",
+            "uksouth",
+            "London Region"
+        ]
+    },
+
+    "都柏林": {
+        "code": "DUB",
+        "aliases": [
+            "eu-west-1",
+            "Ireland",
+            "North Europe"
+        ]
+    },
+
+    "法兰克福": {
+        "code": "FRA",
+        "aliases": [
+            "eu-central-1",
+            "europe-west3",
+            "Germany West Central",
+            "germanywestcentral",
+            "Frankfurt Region"
+        ]
+    },
+
+    "阿姆斯特丹": {
+        "code": "AMS",
+        "aliases": [
+            "europe-west4",
+            "Netherlands West",
+            "Amsterdam Region"
+        ]
+    },
+
+    "巴黎": {
+        "code": "PAR",
+        "aliases": [
+            "eu-west-3",
+            "France Central",
+            "Paris Region"
+        ]
+    },
+
+    "苏黎世": {
+        "code": "ZRH",
+        "aliases": [
+            "eu-central-2",
+            "Switzerland North",
+            "Zurich Region"
+        ]
+    },
+
+    "斯德哥尔摩": {
+        "code": "STO",
+        "aliases": [
+            "eu-north-1",
+            "Sweden Central",
+            "Stockholm Region"
+        ]
+    },
+
+    "悉尼": {
+        "code": "SYD",
+        "aliases": [
+            "ap-southeast-2",
+            "australia-southeast1",
+            "Australia East",
+            "Sydney Region"
+        ]
+    },
+
+    "迪拜": {
+        "code": "DXB",
+        "aliases": [
+            "me-central-1",
+            "UAE North",
+            "Dubai Region"
+        ]
+    },
+
+    "圣保罗": {
+        "code": "SAO",
+        "aliases": [
+            "sa-east-1",
+            "Brazil South",
+            "Sao Paulo Region"
+        ]
+    }
+}
