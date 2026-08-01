@@ -97,7 +97,7 @@ class NodeConverter:
         m = re.search(r"#\s*([^|]+)", line)
         if m:
             token = m.group(1).strip()
-            # 删除前导序���/下划线，例如 "03_JP-HND" -> "JP-HND"
+            # 删除前导序号/下划线，例如 "03_JP-HND" -> "JP-HND"
             token = re.sub(r"^\d+[_\s-]*", "", token)
             # 把 token 传给 parse_location 作为 hint（parse_location 能识别国家/机场别名）
             hint = parse_location(token) or {}
@@ -185,7 +185,6 @@ class NodeConverter:
 
 
 
-
         # ======================
         # 延迟
         # ======================
@@ -238,7 +237,7 @@ class NodeConverter:
         return node
 
 
-    def assign_number(self,nodes):
+    def assign_number(self, nodes):
 
         # 先清空计数器
         self.reset_counter()
@@ -259,17 +258,8 @@ class NodeConverter:
 
         for node in nodes:
 
-            is_japan = (
-                (node.country and str(node.country).upper() == "JP")
-                or (node.country_name == "日本")
-                or ("日本" in (node.country_display or ""))
-                or (node.airport and str(node.airport).upper() in {"NRT","HND","TYO","KIX","ITM","OSA","NGO","FUK","SPK","OKA","CTS","KMQ","FSZ","MMB"})
-            )
-
-            if is_japan:
-                key = "JP"
-            else:
-                key = node.airport or node.datacenter or node.country or "OTHER"
+            # 统一按国家编号（所有国家采用相同逻辑）
+            key = node.country_name or "OTHER"
 
             self.counters[key] += 1
 
