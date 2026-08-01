@@ -1,7 +1,7 @@
 # NodeManager for Cloudflare优选ip
 
 ### 节点整理器（仅支持IPV4）
-注：本项目为测试项目，代码均由AI生成。
+注：本项目为测试项目，代码（含测试IP）均由AI生成。
 
 <img width="1251" height="762" alt="image" src="https://github.com/user-attachments/assets/c60e9bc3-5537-4bb4-86c4-e397db66d2ec" />
 
