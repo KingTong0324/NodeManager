@@ -1,9 +1,0 @@
-config
-│
-├── region.json        国家
-│
-├── city.json          城市标准名
-│
-├── airport.json       机场代码
-│
-└── datacenter.json    所有机房别名
