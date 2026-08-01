@@ -1,80 +1,81 @@
 import os
 import json
 from collections import defaultdict
+from core.path_utils import get_base_dir
 
 class NodeDatabase:
     def __init__(self):
-        base_dir=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        self.nodes_dir=os.path.join(base_dir,"nodes")
+        base_dir = get_base_dir()
+        self.nodes_dir = os.path.join(base_dir, "nodes")
 
         if not os.path.exists(self.nodes_dir):
             os.makedirs(self.nodes_dir)
 
-    def get_country_file(self,country_name):
-        return os.path.join(self.nodes_dir,"nodes.json")
+    def get_country_file(self, country_name):
+        return os.path.join(self.nodes_dir, "nodes.json")
 
-    def load_country(self,country_name):
-        path=self.get_country_file(country_name)
+    def load_country(self, country_name):
+        path = self.get_country_file(country_name)
 
         if not os.path.exists(path):
             return []
 
         try:
-            with open(path,"r",encoding="utf-8") as f:
+            with open(path, "r", encoding="utf-8") as f:
                 return json.load(f)
         except Exception:
             return []
 
-    def save_country(self,country_name,nodes):
-        path=self.get_country_file(country_name)
+    def save_country(self, country_name, nodes):
+        path = self.get_country_file(country_name)
 
-        with open(path,"w",encoding="utf-8") as f:
-            json.dump(nodes,f,ensure_ascii=False,indent=4)
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(nodes, f, ensure_ascii=False, indent=4)
 
-    def add_nodes(self,nodes):
-        old_nodes=self.load_country("")
+    def add_nodes(self, nodes):
+        old_nodes = self.load_country("")
 
-        all_nodes=old_nodes+nodes
-        all_nodes=self.deduplicate(all_nodes)
+        all_nodes = old_nodes + nodes
+        all_nodes = self.deduplicate(all_nodes)
 
         def ip_sort(node):
-            ip=node.get("ip","")
+            ip = node.get("ip", "")
 
             try:
                 return tuple(
                     int(i) for i in ip.split(".")
                 )
             except Exception:
-                return (999,999,999,999)
+                return (999, 999, 999, 999)
 
         all_nodes.sort(
             key=ip_sort
         )
 
-        all_nodes=self.renumber(all_nodes)
+        all_nodes = self.renumber(all_nodes)
 
-        self.save_country("",all_nodes)
+        self.save_country("", all_nodes)
 
         return self.load_all()
 
-    def delete_node(self,ip,port):
+    def delete_node(self, ip, port):
         for file in os.listdir(self.nodes_dir):
             if not file.endswith(".json"):
                 continue
 
-            country_name=file[:-5]
-            nodes=self.load_country(country_name)
+            country_name = file[:-5]
+            nodes = self.load_country(country_name)
 
-            result=[]
+            result = []
 
             for node in nodes:
-                if node.get("ip")==ip and node.get("port")==port:
+                if node.get("ip") == ip and node.get("port") == port:
                     continue
 
                 result.append(node)
 
-            result=self.renumber(result)
-            self.save_country(country_name,result)
+            result = self.renumber(result)
+            self.save_country(country_name, result)
 
     def country_order(self):
         return {
@@ -125,7 +126,7 @@ class NodeDatabase:
         }
 
     def load_all(self):
-        result=[]
+        result = []
 
         if not os.path.exists(self.nodes_dir):
             return result
@@ -134,20 +135,20 @@ class NodeDatabase:
             if not file.endswith(".json"):
                 continue
 
-            path=os.path.join(self.nodes_dir,file)
+            path = os.path.join(self.nodes_dir, file)
 
             try:
-                with open(path,"r",encoding="utf-8") as f:
-                    data=json.load(f)
+                with open(path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
 
                 result.extend(data)
 
             except Exception:
                 pass
 
-        result=self.deduplicate(result)
+        result = self.deduplicate(result)
 
-        order=self.country_order()
+        order = self.country_order()
 
         result.sort(
             key=lambda x:(
@@ -161,31 +162,31 @@ class NodeDatabase:
 
         return result
 
-    def deduplicate(self,nodes):
-        result=[]
-        index={}
+    def deduplicate(self, nodes):
+        result = []
+        index = {}
 
         for node in nodes:
-            key=(
+            key = (
                 node.get("ip",""),
                 node.get("port","")
             )
 
             if key in index:
-                result[index[key]]=node
+                result[index[key]] = node
             else:
-                index[key]=len(result)
+                index[key] = len(result)
                 result.append(node)
 
         return result
 
-    def renumber(self,nodes):
-        counters=defaultdict(int)
+    def renumber(self, nodes):
+        counters = defaultdict(int)
 
         for node in nodes:
-            country=node.get("country_name","OTHER")
+            country = node.get("country_name","OTHER")
 
-            counters[country]+=1
-            node["number"]=f"{counters[country]:02d}"
+            counters[country] += 1
+            node["number"] = f"{counters[country]:02d}"
 
         return nodes
