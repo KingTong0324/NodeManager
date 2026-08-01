@@ -149,10 +149,26 @@ class NodeManagerApp:
         self.refresh_saved()
 
     def on_focus_changed(self, old, new):
-        # if focus moved away from savedList (or its children), clear selection
+        # Only clear selection when focus truly leaves the application window.
+        # Avoid clearing when the user clicks buttons inside the same window (so delete/copy still work).
         try:
             if old and (old is self.window.savedList or self.window.savedList.isAncestorOf(old)):
-                if not (new and (new is self.window.savedList or self.window.savedList.isAncestorOf(new))):
+                moved_within_window = False
+
+                if new:
+                    # If new is a child of the same top-level window, consider focus still within app
+                    try:
+                        if hasattr(new, 'window') and new.window() is self.window:
+                            moved_within_window = True
+                    except Exception:
+                        moved_within_window = False
+
+                    # Also treat savedList and its children as within window
+                    if new is self.window.savedList or self.window.savedList.isAncestorOf(new):
+                        moved_within_window = True
+
+                # If focus moved outside this app's main window, clear selection
+                if not moved_within_window:
                     self.window.savedList.clearSelection()
         except Exception:
             # ignore any unexpected errors during focus handling
