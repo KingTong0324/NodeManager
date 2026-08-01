@@ -32,10 +32,11 @@ class NodeManager:
         return self.saved_nodes
 
     def delete(self, ip, port):
-        self.database.delete_node(ip, port)
+        # return boolean whether deletion happened
+        deleted = self.database.delete_node(ip, port)
         self.load_database()
 
-        return self.saved_nodes
+        return deleted
 
     def renumber(self):
         counters = defaultdict(int)
