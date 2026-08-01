@@ -1,14 +1,13 @@
 # NodeManager for Cloudflare优选ip
 
 ### 节点整理器（仅支持IPV4）
+注：本项目为测试项目，代码均由AI生成。
 
 <img width="1251" height="762" alt="image" src="https://github.com/user-attachments/assets/c60e9bc3-5537-4bb4-86c4-e397db66d2ec" />
 
 ## 项目概览
 
 **NodeManager** 是一个功能完整的 Python 桌面应用，主要用于**解析、整理和管理网络节点信息**。
-
-注：本项目代码均有AI生成
 
 ### 核心功能
 - 📝 **解析节点文本** - 从输入文本中自动提取 IP、端口、地理位置、速度、延迟等信息
