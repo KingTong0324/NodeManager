@@ -1,6 +1,8 @@
-NodeManager for Cloudflare优选ip
-节点整理器（仅支持IPV4）
-<img width="1251" height="762" alt="image" src="https://github.com/user-attachments/assets/c60e9bc3-5537-4bb4-86c4-e397db66d2ec" /><img width="1251" height="762" alt="image" src="https://github.com/user-attachments/assets/ec09c624-f702-443f-8d58-1e28f72d9414" /># 
+# NodeManager for Cloudflare优选ip
+
+### 节点整理器（仅支持IPV4）
+
+<img width="1251" height="762" alt="image" src="https://github.com/user-attachments/assets/c60e9bc3-5537-4bb4-86c4-e397db66d2ec" />
 
 ## 项目概览
 
