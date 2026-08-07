@@ -1,0 +1,69 @@
+name: PyInstaller Build
+
+on:
+  push:
+    branches:
+      - pyinstaller-support
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-linux:
+    name: Build (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Run build.sh
+        run: |
+          chmod +x build.sh
+          ./build.sh
+
+      - name: Upload artifact (dist)
+        uses: actions/upload-artifact@v4
+        with:
+          name: NodeManager-linux
+          path: |
+            dist/NodeManager/**
+
+  build-windows:
+    name: Build (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies and build
+        shell: pwsh
+        run: |
+          python -m venv .venv
+          .\.venv\Scripts\Activate.ps1
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+          .\build.ps1
+
+      - name: Upload artifact (dist)
+        uses: actions/upload-artifact@v4
+        with:
+          name: NodeManager-windows
+          path: |
+            dist/NodeManager/**
