@@ -36,11 +36,12 @@ parser → Node → converter → manager → GUI
 - `node_manager.py` - 节点管理逻辑，处理当前节点和保存节点
 - `storage.py` - 数据持久化操作
 - `node_database.py` - 数据库操作和节点查询
+- `path_utils.py` - 路径工具函数
 
 #### 3. **`gui/` 用户界面层**
 - `NodeManager.ui` - Qt Designer 设计文件（PySide6）
 - `delegate.py` - 自定义列表项渲染器
-- `main.py` - 应用主程序入口
+- `main_tk_backup.py` - Tkinter 备份版本
 
 ### 主要模块功能
 
@@ -108,8 +109,11 @@ NodeManager/
 ├── README.md              # 项目说明文档
 ├── AI_RULES.md            # AI 开发规则
 ├── config/                # 配置文件目录
+│   ├── airport.json       # 机场代码映射配置
 │   ├── city.json          # 城市映射配置
-│   └── format.json        # 输出格式配置
+│   ├── datacenter.json    # 数据中心配置
+│   ├── format.json        # 输出格式配置
+│   └── region.json        # 地区映射配置
 ├── core/                  # 核心业务逻辑
 │   ├── __init__.py
 │   ├── node_model.py      # 节点数据模型
@@ -129,8 +133,7 @@ NodeManager/
 │   ├── delegate.py        # 自定义渲染器
 │   └── main_tk_backup.py  # Tkinter 备份版本
 ├── nodes/                 # 节点数据目录
-├── output/                # 输出目录
-└── config/                # 配置目录
+└── output/                # 输出目录
 ```
 
 ## 许可证
