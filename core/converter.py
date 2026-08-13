@@ -190,10 +190,14 @@ class NodeConverter:
                 speed = parse_speed(block) or {}
 
                 ip_list = parse_ips(block)
+                # fallback: prefer node_info.ip/node_info.port if parse_node_info extracted them (supports split-line labels)
                 if not ip_list:
-                    ip_single = parse_ip(block)
-                    if ip_single:
-                        ip_list = [ip_single]
+                    if node_info.get("ip") and node_info.get("port"):
+                        ip_list = [{"ip": node_info.get("ip"), "port": node_info.get("port")}]
+                    else:
+                        ip_single = parse_ip(block)
+                        if ip_single:
+                            ip_list = [ip_single]
 
                 for ip_data in ip_list:
                     node = Node()
@@ -245,17 +249,23 @@ class NodeConverter:
 
             else:
                 # block 为单行且没有明显标签 —— 支持行内多个 ip 的行为
-                ip_list = parse_ips(block)
-                if not ip_list:
-                    ip_single = parse_ip(block)
-                    if ip_single:
-                        ip_list = [ip_single]
-
-                # reuse line-level parsing for location/latency/speed
+                # parse node_info early so we can fallback to its ip/port when needed
                 node_info = parse_node_info(block) or {}
                 tls = node_info.get("tls", False)
                 asn = node_info.get("asn", "")
                 isp = node_info.get("isp", "")
+
+                ip_list = parse_ips(block)
+                if not ip_list:
+                    # prefer node_info.ip/node_info.port when available
+                    if node_info.get("ip") and node_info.get("port"):
+                        ip_list = [{"ip": node_info.get("ip"), "port": node_info.get("port")}]
+                    else:
+                        ip_single = parse_ip(block)
+                        if ip_single:
+                            ip_list = [ip_single]
+
+                # reuse line-level parsing for location/latency/speed
                 location = parse_location(block) or {}
                 # hint
                 m = re.search(r"#\s*([^|]+(?:\|[^|]+)?)", block)
