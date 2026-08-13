@@ -1,6 +1,5 @@
 import re
 
-
 def parse_ip(text):
     """
     解析IP和端口
@@ -20,6 +19,17 @@ def parse_ip(text):
         "port": ""
     }
 
+    # 匹配 [IPv6]:端口
+    ipv6_match = re.search(
+        r'\[([0-9a-fA-F:]+)\](?::|,|=|\s+)(\d{2,5})',
+        text
+    )
+
+    if ipv6_match:
+        result["ip"] = ipv6_match.group(1)
+        result["port"] = ipv6_match.group(2)
+
+        return result
 
     # 匹配 IPv4
     ip_match = re.search(
@@ -41,5 +51,16 @@ def parse_ip(text):
 
             return result
 
+    # 匹配 IPv6 + 端口（支持 :: 压缩格式）
+    ipv6_match = re.search(
+        r'([0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{0,4}){2,}):(\d{2,5})(?=#|[|,\s]|$)',
+        text
+    )
+
+    if ipv6_match:
+        result["ip"] = ipv6_match.group(1)
+        result["port"] = ipv6_match.group(2)
+
+        return result
 
     return None

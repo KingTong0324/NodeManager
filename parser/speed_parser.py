@@ -6,7 +6,6 @@ def parse_speed(text):
     下载速度解析器
 
     支持:
-
     MB/s
     MBps
     Mbps
@@ -17,27 +16,18 @@ def parse_speed(text):
     Kbps
     Kb/s
     GB/s
+    GBps
     Gbps
+    Gb/s
 
     返回:
-
     {
         "speed": "10.82MB/s",
         "value": 10.82,
         "unit": "MB/s",
         "mbps": 86.56
     }
-
-    无匹配:
-
-    {
-        "speed":"",
-        "value":None,
-        "unit":"",
-        "mbps":None
-    }
     """
-
 
     result = {
         "speed": "",
@@ -46,24 +36,17 @@ def parse_speed(text):
         "mbps": None
     }
 
-
     if not text:
         return result
 
-
     source = text.replace(" ", "")
 
-
-
-    # 匹配速度单位
     pattern = (
         r'(\d+(?:\.\d+)?)'
-        r'(Gbps|GB/s|GBps|'
-        r'Mbps|MB/s|MBps|Mbit/s|Mb/s|'
-        r'Kbps|KB/s|KBps|Kb/s|'
-        r'Gb/s)'
+        r'(GB/s|GBps|Gbps|Gb/s|'
+        r'MB/s|MBps|Mbps|Mbit/s|Mb/s|'
+        r'KB/s|KBps|Kbps|Kb/s)'
     )
-
 
     match = re.search(
         pattern,
@@ -71,67 +54,76 @@ def parse_speed(text):
         re.IGNORECASE
     )
 
-
     if not match:
         return result
-
-
 
     value = float(
         match.group(1)
     )
 
+    unit = normalize_unit(
+        match.group(2)
+    )
 
-    unit_raw = match.group(2)
+    display_value = value
+    display_unit = unit
 
+    # KB/s 转 MB/s
+    if unit == "KB/s" and value >= 1024:
+        display_value = round(
+            value / 1024,
+            2
+        )
+        display_unit = "MB/s"
 
-
-    unit = normalize_unit(unit_raw)
-
-
+    # MB/s 转 GB/s
+    elif unit == "MB/s" and value >= 1024:
+        display_value = round(
+            value / 1024,
+            2
+        )
+        display_unit = "GB/s"
 
     result["value"] = value
     result["unit"] = unit
-    result["speed"] = f"{value}{unit}"
+    result["speed"] = f"{display_value}{display_unit}"
 
     result["mbps"] = convert_to_mbps(
         value,
         unit
     )
 
-
     return result
 
 
-
 def normalize_unit(unit):
-
     """
     单位标准化
     """
 
-    u = unit.lower()
-
+    u = unit.replace(
+        " ",
+        ""
+    ).lower()
 
     mapping = {
+        # Byte
+        "gb/s": "GB/s",
 
+        "mb/s": "MB/s",
+
+        "kb/s": "KB/s",
+
+        # bit
         "gbps": "Gbps",
         "gb/s": "GB/s",
-        "gbps": "Gbps",
-        "gbps": "Gbps",
+        "gb/s": "GB/s",
 
-        "mbps": "Mbps",
-        "mb/s": "MB/s",
-        "mbps": "Mbps",
         "mbps": "Mbps",
         "mbit/s": "Mbps",
 
-        "kbps": "Kbps",
-        "kb/s": "KB/s",
-        "kbps": "Kbps",
-
+        "kbps": "Kbps"
     }
-
 
     return mapping.get(
         u,
@@ -139,14 +131,11 @@ def normalize_unit(unit):
     )
 
 
-
 def convert_to_mbps(value, unit):
-
     """
     所有速度统一转换 Mbps
 
     1 Byte = 8 bit
-
     """
 
     if unit == "GB/s":
@@ -155,13 +144,11 @@ def convert_to_mbps(value, unit):
             2
         )
 
-
     if unit == "MB/s":
         return round(
             value * 8,
             2
         )
-
 
     if unit == "KB/s":
         return round(
@@ -169,13 +156,11 @@ def convert_to_mbps(value, unit):
             2
         )
 
-
     if unit == "Gbps":
         return round(
             value * 1000,
             2
         )
-
 
     if unit == "Mbps":
         return round(
@@ -183,12 +168,10 @@ def convert_to_mbps(value, unit):
             2
         )
 
-
     if unit == "Kbps":
         return round(
             value / 1000,
             2
         )
-
 
     return None

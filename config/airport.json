@@ -1,18 +1,202 @@
 {
+    "PEK": {
+        "city": "北京",
+        "code": "PEK",
+        "country": "CN",
+        "aliases": [
+            "PEK",
+            "Beijing",
+            "Beijing-Capital",
+            "北京首都"
+        ]
+    },
+    "PVG": {
+        "city": "上海",
+        "code": "PVG",
+        "country": "CN",
+        "aliases": [
+            "PVG",
+            "Shanghai",
+            "Shanghai-Pudong",
+            "上海浦东"
+        ]
+    },
+    "SHA": {
+        "city": "上海",
+        "code": "SHA",
+        "country": "CN",
+        "aliases": [
+            "SHA",
+            "Shanghai-Hongqiao",
+            "上海虹桥"
+        ]
+    },
+    "CAN": {
+        "city": "广州",
+        "code": "CAN",
+        "country": "CN",
+        "aliases": [
+            "CAN",
+            "Guangzhou",
+            "广州"
+        ]
+    },
+    "SZX": {
+        "city": "深圳",
+        "code": "SZX",
+        "country": "CN",
+        "aliases": [
+            "SZX",
+            "Shenzhen",
+            "深圳"
+        ]
+    },
+    "HGH": {
+        "city": "杭州",
+        "code": "HGH",
+        "country": "CN",
+        "aliases": [
+            "HGH",
+            "Hangzhou",
+            "杭州"
+        ]
+    },
+    "NKG": {
+        "city": "南京",
+        "code": "NKG",
+        "country": "CN",
+        "aliases": [
+            "NKG",
+            "Nanjing",
+            "南京"
+        ]
+    },
+    "CTU": {
+        "city": "成都",
+        "code": "CTU",
+        "country": "CN",
+        "aliases": [
+            "CTU",
+            "Chengdu",
+            "成都"
+        ]
+    },
+    "CKG": {
+        "city": "重庆",
+        "code": "CKG",
+        "country": "CN",
+        "aliases": [
+            "CKG",
+            "Chongqing",
+            "重庆"
+        ]
+    },
+    "WUH": {
+        "city": "武汉",
+        "code": "WUH",
+        "country": "CN",
+        "aliases": [
+            "WUH",
+            "Wuhan",
+            "武汉"
+        ]
+    },
+    "XIY": {
+        "city": "西安",
+        "code": "XIY",
+        "country": "CN",
+        "aliases": [
+            "XIY",
+            "Xian",
+            "Xi'an",
+            "西安"
+        ]
+    },
+    "TSN": {
+        "city": "天津",
+        "code": "TSN",
+        "country": "CN",
+        "aliases": [
+            "TSN",
+            "Tianjin",
+            "天津"
+        ]
+    },
+    "XMN": {
+        "city": "厦门",
+        "code": "XMN",
+        "country": "CN",
+        "aliases": [
+            "XMN",
+            "Xiamen",
+            "厦门"
+        ]
+    },
+    "TAO": {
+        "city": "青岛",
+        "code": "TAO",
+        "country": "CN",
+        "aliases": [
+            "TAO",
+            "Qingdao",
+            "青岛"
+        ]
+    },
+    "CSX": {
+        "city": "长沙",
+        "code": "CSX",
+        "country": "CN",
+        "aliases": [
+            "CSX",
+            "Changsha",
+            "长沙"
+        ]
+    },
+    "HFE": {
+        "city": "合肥",
+        "code": "HFE",
+        "country": "CN",
+        "aliases": [
+            "HFE",
+            "Hefei",
+            "合肥"
+        ]
+    },
+    "CGO": {
+        "city": "郑州",
+        "code": "CGO",
+        "country": "CN",
+        "aliases": [
+            "CGO",
+            "Zhengzhou",
+            "郑州"
+        ]
+    },
+    "TNA": {
+        "city": "济南",
+        "code": "TNA",
+        "country": "CN",
+        "aliases": [
+            "TNA",
+            "Jinan",
+            "济南"
+        ]
+    },
     "NRT": {
         "city": "东京",
         "code": "NRT",
+        "country": "JP",
         "aliases": [
             "NRT",
             "Narita",
             "Narita-Tokyo",
-            "Tokyo-Narita",
             "东京成田"
         ]
     },
     "HND": {
         "city": "东京",
         "code": "HND",
+        "country": "JP",
         "aliases": [
             "HND",
             "Haneda",
@@ -23,18 +207,19 @@
     "TYO": {
         "city": "东京",
         "code": "TYO",
+        "country": "JP",
         "aliases": [
             "TYO",
             "Tokyo",
-            "tokyo",
-            "Japan-Tokyo",
             "JP-Tokyo",
+            "Japan-Tokyo",
             "东京"
         ]
     },
     "KIX": {
         "city": "大阪",
         "code": "KIX",
+        "country": "JP",
         "aliases": [
             "KIX",
             "Kansai",
@@ -45,6 +230,7 @@
     "ITM": {
         "city": "大阪",
         "code": "ITM",
+        "country": "JP",
         "aliases": [
             "ITM",
             "Osaka-Itami",
@@ -54,10 +240,10 @@
     "OSA": {
         "city": "大阪",
         "code": "OSA",
+        "country": "JP",
         "aliases": [
             "OSA",
             "Osaka",
-            "osaka",
             "Japan-Osaka",
             "JP-Osaka",
             "大阪"
@@ -66,12 +252,642 @@
     "NGO": {
         "city": "名古屋",
         "code": "NGO",
+        "country": "JP",
         "aliases": [
             "NGO",
             "Nagoya",
-            "nagoya",
-            "Japan-Nagoya",
             "名古屋"
+        ]
+    },
+    "CTS": {
+        "city": "札幌",
+        "code": "CTS",
+        "country": "JP",
+        "aliases": [
+            "CTS",
+            "Sapporo",
+            "札幌"
+        ]
+    },
+    "FUK": {
+        "city": "福冈",
+        "code": "FUK",
+        "country": "JP",
+        "aliases": [
+            "FUK",
+            "Fukuoka",
+            "福冈"
+        ]
+    },
+    "OKA": {
+        "city": "冲绳",
+        "code": "OKA",
+        "country": "JP",
+        "aliases": [
+            "OKA",
+            "Okinawa",
+            "冲绳"
+        ]
+    },
+    "SEL": {
+        "city": "首尔",
+        "code": "SEL",
+        "country": "KR",
+        "aliases": [
+            "SEL",
+            "Seoul",
+            "首尔"
+        ]
+    },
+    "ICN": {
+        "city": "首尔",
+        "code": "ICN",
+        "country": "KR",
+        "aliases": [
+            "ICN",
+            "Incheon",
+            "仁川"
+        ]
+    },
+    "GMP": {
+        "city": "首尔",
+        "code": "GMP",
+        "country": "KR",
+        "aliases": [
+            "GMP",
+            "Gimpo",
+            "金浦"
+        ]
+    },
+    "PUS": {
+        "city": "釜山",
+        "code": "PUS",
+        "country": "KR",
+        "aliases": [
+            "PUS",
+            "Busan",
+            "釜山"
+        ]
+    },
+    "HKG": {
+        "city": "香港",
+        "code": "HKG",
+        "country": "HK",
+        "aliases": [
+            "HKG",
+            "Hong Kong",
+            "HongKong",
+            "香港"
+        ]
+    },
+    "TPE": {
+        "city": "台北",
+        "code": "TPE",
+        "country": "TW",
+        "aliases": [
+            "TPE",
+            "Taipei",
+            "台北"
+        ]
+    },
+    "KHH": {
+        "city": "高雄",
+        "code": "KHH",
+        "country": "TW",
+        "aliases": [
+            "KHH",
+            "Kaohsiung",
+            "高雄"
+        ]
+    },
+    "MFM": {
+        "city": "澳门",
+        "code": "MFM",
+        "country": "MO",
+        "aliases": [
+            "MFM",
+            "Macau",
+            "澳门"
+        ]
+    },
+    "SIN": {
+        "city": "新加坡",
+        "code": "SIN",
+        "country": "SG",
+        "aliases": [
+            "SIN",
+            "Singapore",
+            "新加坡"
+        ]
+    },
+    "BKK": {
+        "city": "曼谷",
+        "code": "BKK",
+        "country": "TH",
+        "aliases": [
+            "BKK",
+            "Bangkok",
+            "曼谷"
+        ]
+    },
+    "KUL": {
+        "city": "吉隆坡",
+        "code": "KUL",
+        "country": "MY",
+        "aliases": [
+            "KUL",
+            "Kuala Lumpur",
+            "吉隆坡"
+        ]
+    },
+    "MNL": {
+        "city": "马尼拉",
+        "code": "MNL",
+        "country": "PH",
+        "aliases": [
+            "MNL",
+            "Manila",
+            "马尼拉"
+        ]
+    },
+    "CGK": {
+        "city": "雅加达",
+        "code": "CGK",
+        "country": "ID",
+        "aliases": [
+            "CGK",
+            "Jakarta",
+            "雅加达"
+        ]
+    },
+    "HAN": {
+        "city": "河内",
+        "code": "HAN",
+        "country": "VN",
+        "aliases": [
+            "HAN",
+            "Hanoi",
+            "河内"
+        ]
+    },
+    "SGN": {
+        "city": "胡志明",
+        "code": "SGN",
+        "country": "VN",
+        "aliases": [
+            "SGN",
+            "Ho Chi Minh",
+            "Saigon",
+            "胡志明"
+        ]
+    },
+    "LAX": {
+        "city": "洛杉矶",
+        "code": "LAX",
+        "country": "US",
+        "aliases": [
+            "LAX",
+            "Los Angeles",
+            "LosAngeles",
+            "洛杉矶"
+        ]
+    },
+    "SJC": {
+        "city": "圣何塞",
+        "code": "SJC",
+        "country": "US",
+        "aliases": [
+            "SJC",
+            "San Jose",
+            "Silicon Valley",
+            "圣何塞"
+        ]
+    },
+    "SFO": {
+        "city": "旧金山",
+        "code": "SFO",
+        "country": "US",
+        "aliases": [
+            "SFO",
+            "San Francisco",
+            "旧金山"
+        ]
+    },
+    "SEA": {
+        "city": "西雅图",
+        "code": "SEA",
+        "country": "US",
+        "aliases": [
+            "SEA",
+            "Seattle",
+            "西雅图"
+        ]
+    },
+    "JFK": {
+        "city": "纽约",
+        "code": "JFK",
+        "country": "US",
+        "aliases": [
+            "JFK",
+            "New York",
+            "NewYork",
+            "纽约"
+        ]
+    },
+    "EWR": {
+        "city": "纽瓦克",
+        "code": "EWR",
+        "country": "US",
+        "aliases": [
+            "EWR",
+            "Newark",
+            "纽瓦克"
+        ]
+    },
+    "ORD": {
+        "city": "芝加哥",
+        "code": "ORD",
+        "country": "US",
+        "aliases": [
+            "ORD",
+            "Chicago",
+            "芝加哥"
+        ]
+    },
+    "DFW": {
+        "city": "达拉斯",
+        "code": "DFW",
+        "country": "US",
+        "aliases": [
+            "DFW",
+            "Dallas",
+            "达拉斯"
+        ]
+    },
+    "ATL": {
+        "city": "亚特兰大",
+        "code": "ATL",
+        "country": "US",
+        "aliases": [
+            "ATL",
+            "Atlanta",
+            "亚特兰大"
+        ]
+    },
+    "MIA": {
+        "city": "迈阿密",
+        "code": "MIA",
+        "country": "US",
+        "aliases": [
+            "MIA",
+            "Miami",
+            "迈阿密"
+        ]
+    },
+    "IAD": {
+        "city": "华盛顿",
+        "code": "IAD",
+        "country": "US",
+        "aliases": [
+            "IAD",
+            "Washington",
+            "WashingtonDC",
+            "华盛顿"
+        ]
+    },
+    "YYZ": {
+        "city": "多伦多",
+        "code": "YYZ",
+        "country": "CA",
+        "aliases": [
+            "YYZ",
+            "Toronto",
+            "多伦多"
+        ]
+    },
+    "YVR": {
+        "city": "温哥华",
+        "code": "YVR",
+        "country": "CA",
+        "aliases": [
+            "YVR",
+            "Vancouver",
+            "温哥华"
+        ]
+    },
+    "LHR": {
+        "city": "伦敦",
+        "code": "LHR",
+        "country": "GB",
+        "aliases": [
+            "LHR",
+            "London",
+            "伦敦"
+        ]
+    },
+    "MAN": {
+        "city": "曼彻斯特",
+        "code": "MAN",
+        "country": "GB",
+        "aliases": [
+            "MAN",
+            "Manchester",
+            "曼彻斯特"
+        ]
+    },
+    "FRA": {
+        "city": "法兰克福",
+        "code": "FRA",
+        "country": "DE",
+        "aliases": [
+            "FRA",
+            "Frankfurt",
+            "法兰克福"
+        ]
+    },
+    "BER": {
+        "city": "柏林",
+        "code": "BER",
+        "country": "DE",
+        "aliases": [
+            "BER",
+            "Berlin",
+            "柏林"
+        ]
+    },
+    "MUC": {
+        "city": "慕尼黑",
+        "code": "MUC",
+        "country": "DE",
+        "aliases": [
+            "MUC",
+            "Munich",
+            "慕尼黑"
+        ]
+    },
+    "AMS": {
+        "city": "阿姆斯特丹",
+        "code": "AMS",
+        "country": "NL",
+        "aliases": [
+            "AMS",
+            "Amsterdam",
+            "阿姆斯特丹"
+        ]
+    },
+    "CDG": {
+        "city": "巴黎",
+        "code": "CDG",
+        "country": "FR",
+        "aliases": [
+            "CDG",
+            "Paris",
+            "巴黎"
+        ]
+    },
+    "ZRH": {
+        "city": "苏黎世",
+        "code": "ZRH",
+        "country": "CH",
+        "aliases": [
+            "ZRH",
+            "Zurich",
+            "苏黎世"
+        ]
+    },
+    "VIE": {
+        "city": "维也纳",
+        "code": "VIE",
+        "country": "AT",
+        "aliases": [
+            "VIE",
+            "Vienna",
+            "维也纳"
+        ]
+    },
+    "CPH": {
+        "city": "哥本哈根",
+        "code": "CPH",
+        "country": "DK",
+        "aliases": [
+            "CPH",
+            "Copenhagen",
+            "哥本哈根"
+        ]
+    },
+    "OSL": {
+        "city": "奥斯陆",
+        "code": "OSL",
+        "country": "NO",
+        "aliases": [
+            "OSL",
+            "Oslo",
+            "奥斯陆"
+        ]
+    },
+    "HEL": {
+        "city": "赫尔辛基",
+        "code": "HEL",
+        "country": "FI",
+        "aliases": [
+            "HEL",
+            "Helsinki",
+            "赫尔辛基"
+        ]
+    },
+    "WAW": {
+        "city": "华沙",
+        "code": "WAW",
+        "country": "PL",
+        "aliases": [
+            "WAW",
+            "Warsaw",
+            "华沙"
+        ]
+    },
+    "IST": {
+        "city": "伊斯坦布尔",
+        "code": "IST",
+        "country": "TR",
+        "aliases": [
+            "IST",
+            "Istanbul",
+            "伊斯坦布尔"
+        ]
+    },
+    "DEL": {
+        "city": "新德里",
+        "code": "DEL",
+        "country": "IN",
+        "aliases": [
+            "DEL",
+            "Delhi",
+            "New Delhi",
+            "新德里"
+        ]
+    },
+    "BOM": {
+        "city": "孟买",
+        "code": "BOM",
+        "country": "IN",
+        "aliases": [
+            "BOM",
+            "Mumbai",
+            "孟买"
+        ]
+    },
+    "BLR": {
+        "city": "班加罗尔",
+        "code": "BLR",
+        "country": "IN",
+        "aliases": [
+            "BLR",
+            "Bangalore",
+            "Bengaluru",
+            "班加罗尔"
+        ]
+    },
+    "DXB": {
+        "city": "迪拜",
+        "code": "DXB",
+        "country": "AE",
+        "aliases": [
+            "DXB",
+            "Dubai",
+            "迪拜"
+        ]
+    },
+    "DOH": {
+        "city": "多哈",
+        "code": "DOH",
+        "country": "QA",
+        "aliases": [
+            "DOH",
+            "Doha",
+            "多哈"
+        ]
+    },
+    "TLV": {
+        "city": "特拉维夫",
+        "code": "TLV",
+        "country": "IL",
+        "aliases": [
+            "TLV",
+            "Tel Aviv",
+            "特拉维夫"
+        ]
+    },
+    "SYD": {
+        "city": "悉尼",
+        "code": "SYD",
+        "country": "AU",
+        "aliases": [
+            "SYD",
+            "Sydney",
+            "悉尼"
+        ]
+    },
+    "MEL": {
+        "city": "墨尔本",
+        "code": "MEL",
+        "country": "AU",
+        "aliases": [
+            "MEL",
+            "Melbourne",
+            "墨尔本"
+        ]
+    },
+    "BNE": {
+        "city": "布里斯班",
+        "code": "BNE",
+        "country": "AU",
+        "aliases": [
+            "BNE",
+            "Brisbane",
+            "布里斯班"
+        ]
+    },
+    "PER": {
+        "city": "珀斯",
+        "code": "PER",
+        "country": "AU",
+        "aliases": [
+            "PER",
+            "Perth",
+            "珀斯"
+        ]
+    },
+    "GRU": {
+        "city": "圣保罗",
+        "code": "GRU",
+        "country": "BR",
+        "aliases": [
+            "GRU",
+            "Sao Paulo",
+            "SaoPaulo",
+            "圣保罗"
+        ]
+    },
+    "EZE": {
+        "city": "布宜诺斯艾利斯",
+        "code": "EZE",
+        "country": "AR",
+        "aliases": [
+            "EZE",
+            "Buenos Aires",
+            "BuenosAires",
+            "布宜诺斯艾利斯"
+        ]
+    },
+    "SCL": {
+        "city": "圣地亚哥",
+        "code": "SCL",
+        "country": "CL",
+        "aliases": [
+            "SCL",
+            "Santiago",
+            "圣地亚哥"
+        ]
+    },
+    "MEX": {
+        "city": "墨西哥城",
+        "code": "MEX",
+        "country": "MX",
+        "aliases": [
+            "MEX",
+            "Mexico City",
+            "MexicoCity",
+            "墨西哥城"
+        ]
+    },
+    "JNB": {
+        "city": "约翰内斯堡",
+        "code": "JNB",
+        "country": "ZA",
+        "aliases": [
+            "JNB",
+            "Johannesburg",
+            "约翰内斯堡"
+        ]
+    },
+    "CPT": {
+        "city": "开普敦",
+        "code": "CPT",
+        "country": "ZA",
+        "aliases": [
+            "CPT",
+            "Cape Town",
+            "开普敦"
+        ]
+    },
+    "CAI": {
+        "city": "开罗",
+        "code": "CAI",
+        "country": "EG",
+        "aliases": [
+            "CAI",
+            "Cairo",
+            "开罗"
         ]
     }
 }

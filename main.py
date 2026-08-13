@@ -8,6 +8,7 @@ from PySide6.QtCore import QFile, Qt, QTimer, QEvent, QObject
 from core.converter import NodeConverter
 from core.node_manager import NodeManager
 from core.path_utils import resource_path
+from PySide6.QtGui import QIcon
 
 class SavedListFilter(QObject):
     def __init__(self, app):
@@ -51,6 +52,10 @@ class NodeManagerApp:
         ui_file.open(QFile.ReadOnly)
         window = loader.load(ui_file)
         ui_file.close()
+
+        icon_path = resource_path("gui", "NodeManager.ico")
+        window.setWindowIcon(QIcon(icon_path))
+
         return window
 
     def setup_text_menu(self, widget):

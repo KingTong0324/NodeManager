@@ -13,150 +13,126 @@ CONFIG_DIR = os.path.join(
     "config"
 )
 
-
 def load_json(filename):
-
     path = os.path.join(
         CONFIG_DIR,
         filename
     )
 
     try:
-
         with open(
             path,
             "r",
             encoding="utf-8"
         ) as f:
-
             return json.load(f)
 
     except Exception:
-
         return {}
-
 
 region_map = load_json("region.json")
 city_map = load_json("city.json")
 airport_map = load_json("airport.json")
 datacenter_map = load_json("datacenter.json")
 
-
-
 # =========================
 # 默认机场
 # =========================
 
 DEFAULT_AIRPORT = {
-
-    "CN":"PEK",
-    "JP":"TYO",
-    "KR":"SEL",
-    "SG":"SIN",
-    "HK":"HKG",
-    "TW":"TPE",
-
-    "US":"LAX",
-    "GB":"LON",
-    "DE":"FRA",
-    "FR":"PAR",
-    "NL":"AMS",
-
-    "CA":"YYZ",
-    "AU":"SYD",
-
-    "IN":"DEL",
-    "TH":"BKK",
-    "MY":"KUL",
-    "PH":"MNL",
-    "ID":"JKT"
-
+    "CN": "PEK",
+    "JP": "TYO",
+    "KR": "SEL",
+    "SG": "SIN",
+    "HK": "HKG",
+    "TW": "TPE",
+    "US": "LAX",
+    "GB": "LON",
+    "DE": "FRA",
+    "FR": "PAR",
+    "NL": "AMS",
+    "CA": "YYZ",
+    "AU": "SYD",
+    "IN": "DEL",
+    "TH": "BKK",
+    "MY": "KUL",
+    "PH": "MNL",
+    "ID": "JKT"
 }
-
-
 
 # =========================
 # 城市反向
 # =========================
 
 def build_city_reverse(data):
+    result = {}
 
-    result={}
-
-    for city,info in data.items():
-
-        if isinstance(info,dict):
-
+    for city, info in data.items():
+        if isinstance(info, dict):
             for alias in info.get(
                 "aliases",
                 []
             ):
-
                 result[
                     str(alias).lower()
                 ] = city
-
         else:
-
             result[
                 str(info).lower()
             ] = city
 
-
     return result
-
 
 
 # =========================
 # 机场反向
-# 保留真实机场代码
-# NRT -> NRT
-# HND -> HND
-# TYO -> TYO
 # =========================
 
 def build_airport_reverse(data):
+    result = {}
 
-    result={}
-
-    for city,info in data.items():
-
-        if not isinstance(info,dict):
-
+    for code, info in data.items():
+        if not isinstance(info, dict):
             continue
 
-
-        city_code=str(
+        airport_code = str(
             info.get(
                 "code",
-                ""
+                code
             )
         ).upper()
 
+        city = info.get(
+            "city",
+            ""
+        )
 
-        if city_code:
+        country = info.get(
+            "country",
+            ""
+        )
 
+        result[
+            airport_code.lower()
+        ] = {
+            "city": city,
+            "airport": airport_code,
+            "country": country
+        }
+
+        for alias in info.get(
+            "aliases",
+            []
+        ):
             result[
-                city_code.lower()
-            ]={
-
-                "city":city,
-
-                "airport":city_code
-
-            }
-
-
-        for alias in info.get("aliases", []):
-            # 把 alias 映射到 canonical city_code（不要用 alias.upper() 当 code）
-            result[str(alias).lower()] = {
+                str(alias).lower()
+            ] = {
                 "city": city,
-                "airport": city_code
+                "airport": airport_code,
+                "country": country
             }
-
 
     return result
-
 
 
 # =========================
@@ -164,40 +140,31 @@ def build_airport_reverse(data):
 # =========================
 
 def build_datacenter_reverse(data):
+    result = {}
 
-    result={}
-
-    for city,info in data.items():
-
-        if not isinstance(info,dict):
-
+    for city, info in data.items():
+        if not isinstance(info, dict):
             continue
 
-
-        code=str(
+        code = str(
             info.get(
                 "code",
                 ""
             )
         ).upper()
 
-
         if code:
-
             result[
                 code.lower()
             ] = code
-
 
         for alias in info.get(
             "aliases",
             []
         ):
-
             result[
                 str(alias).lower()
             ] = code
-
 
     return result
 
@@ -206,95 +173,130 @@ city_reverse = build_city_reverse(
     city_map
 )
 
-
 airport_reverse = build_airport_reverse(
     airport_map
 )
-
 
 datacenter_reverse = build_datacenter_reverse(
     datacenter_map
 )
 
 
-
 # =========================
 # 机场检测
 # =========================
 
-def detect_airport(text):
+def detect_airport(text, country_code=""):
+    source = text.lower()
 
-    source=text.lower()
+    # 优先匹配真实机场代码
+    for code, info in airport_map.items():
 
-
-    for alias,info in airport_reverse.items():
-
-        if len(alias)<3:
-
+        if country_code and info.get("country") != country_code:
             continue
 
+        airport_code = str(
+            info.get(
+                "code",
+                code
+            )
+        ).lower()
+
+        if len(airport_code) < 3:
+            continue
 
         pattern = (
             r"(?<![a-z])"
-            +
-            re.escape(alias)
-            +
-            r"(?![a-z])"
+            + re.escape(airport_code)
+            + r"(?![a-z])"
         )
-
 
         if re.search(
             pattern,
             source
         ):
+            return {
+                "city": info.get(
+                    "city",
+                    ""
+                ),
+                "airport": airport_code.upper(),
+                "country": info.get(
+                    "country",
+                    ""
+                )
+            }
 
+    # 再匹配机场别名
+    for alias, info in airport_reverse.items():
+
+        if country_code and info.get("country") != country_code:
+            continue
+
+        if len(alias) < 3:
+            continue
+
+        pattern = (
+            r"(?<![a-z])"
+            + re.escape(alias)
+            + r"(?![a-z])"
+        )
+
+        if re.search(
+            pattern,
+            source
+        ):
             return info
 
-
     return None
-
-
 
 # =========================
 # 机房检测
 # =========================
 
 def detect_datacenter(text):
+    source = text.lower()
 
-    source=text.lower()
-
-
-    for alias,code in datacenter_reverse.items():
-
-        if len(alias)<3:
-
+    for alias, code in datacenter_reverse.items():
+        if len(alias) < 3:
             continue
 
-
         if alias in source:
-
             return code
-
 
     return ""
 
+# =========================
+# 原生位置检测
+# =========================
 
+def detect_native_location(text):
+    lines = text.splitlines()
+
+    for index, line in enumerate(lines):
+        if "IP原生位置" in line or "原生位置" in line:
+            for next_line in lines[index + 1:index + 3]:
+                value = re.sub(
+                    r"^[^\w\u4e00-\u9fa5]+",
+                    "",
+                    next_line
+                ).strip()
+
+                if value:
+                    return value
+
+    return ""
 
 # =========================
 # 国家检测
 # =========================
 
 def detect_country(text):
+    source = text.lower()
 
-    source=text.lower()
-
-
-    for code,info in region_map.items():
-
-
-        if isinstance(info,dict):
-
-            aliases=list(
+    for code, info in region_map.items():
+        if isinstance(info, dict):
+            aliases = list(
                 info.get(
                     "aliases",
                     []
@@ -302,7 +304,6 @@ def detect_country(text):
             )
 
             aliases.append(code)
-
             aliases.append(
                 info.get(
                     "name",
@@ -310,160 +311,176 @@ def detect_country(text):
                 )
             )
 
-
         else:
-
-            aliases=[
-
+            aliases = [
                 code,
-
                 str(info)
-
             ]
 
-
-
         for alias in aliases:
-
-
-            alias=str(alias).lower().strip()
-
+            alias = str(alias).lower().strip()
 
             if not alias:
-
                 continue
 
+        if len(alias) <= 2:
+            pattern = (
+                r"(?<![a-z])"
+                +
+                re.escape(alias)
+                +
+                r"(?![a-z])"
+            )
 
+            match = re.search(
+                pattern,
+                source
+            )
 
-            if len(alias)<=2:
+        else:
+            match = re.search(
+                r"(?<![a-z])"
+                + re.escape(alias)
+                + r"(?![a-z])",
+                source
+            )
 
-
-                pattern=(
-
-                    r"(?<![a-z])"
-                    +
-                    re.escape(alias)
-                    +
-                    r"(?![a-z])"
-
-                )
-
-
-                match=re.search(
-                    pattern,
-                    source
-                )
-
-
-            else:
-
-                match=alias in source
-
-
-
-            if match:
-
-
-                return {
-
-                    "country":code,
-
-                    "country_name":
-                        info.get("name","")
-                        if isinstance(info,dict)
-                        else str(info),
-
-
-                    "country_display":
-                        (
-                            info.get("flag","")
-                            +
-                            " "
-                            +
-                            info.get("name","")
-                        )
-                        if isinstance(info,dict)
-                        else str(info)
-
-                }
-
-
+        if match:
+            return {
+                "country": code,
+                "country_name":
+                    info.get("name", "")
+                    if isinstance(info, dict)
+                    else str(info),
+                "country_display":
+                    (
+                        info.get("flag", "")
+                        +
+                        " "
+                        +
+                        info.get("name", "")
+                    )
+                    if isinstance(info, dict)
+                    else str(info)
+            }
     return {}
-
 
 
 # =========================
 # 主解析
 # =========================
 
-def parse_location(text):
-
-
-    result={
-
-        "country":"",
-        "country_name":"",
-        "country_display":"",
-
-        "city":"",
-        "airport":"",
-        "datacenter":""
-
+def parse_location(text, country_code=""):
+    result = {
+        "country": "",
+        "country_name": "",
+        "country_display": "",
+        "city": "",
+        "airport": "",
+        "datacenter": "",
+        "native_location": ""
     }
 
-
     if not text:
-
         return result
 
+    text = re.sub(
+        r"^[^\w\u4e00-\u9fa5]+",
+        "",
+        text
+    ).strip()
 
-    country=detect_country(text)
+    native_location = detect_native_location(text)
 
-    if country:
+    if native_location:
+        result["native_location"] = native_location
 
-        result.update(country)
+    if country_code:
+        region = region_map.get(
+            country_code,
+            {}
+        )
 
+        if isinstance(region, dict):
+            result["country"] = country_code
+            result["country_name"] = region.get(
+                "name",
+                ""
+            )
+            result["country_display"] = (
+                region.get("flag", "")
+                +
+                " "
+                +
+                region.get("name", "")
+            )
 
-    airport=detect_airport(text)
+    else:
+        country = detect_country(text)
+
+        if country:
+            result.update(country)
+
+    airport = detect_airport(
+        text,
+        result["country"]
+    )
 
     if airport:
+        result["airport"] = airport["airport"]
+        result["city"] = airport["city"]
 
-        result["airport"]=airport["airport"]
+        if not result["country"] and airport.get("country"):
+            result["country"] = airport["country"]
 
-        result["city"]=airport["city"]
+            region = region_map.get(
+                airport["country"],
+                {}
+            )
 
+            if isinstance(region, dict):
+                result["country_name"] = region.get(
+                    "name",
+                    ""
+                )
 
-    source=text.lower()
+                result["country_display"] = (
+                    region.get("flag", "")
+                    +
+                    " "
+                    +
+                    region.get("name", "")
+                )
 
+    source = text.lower()
 
-    for alias,city in city_reverse.items():
+    for city, info in city_map.items():
+        if not isinstance(info, dict):
+            continue
 
-        if alias in source:
+        if result["country"] and info.get("country") != result["country"]:
+            continue
 
-            result["city"]=city
+        for alias in info.get(
+            "aliases",
+            []
+        ):
+            if str(alias).lower() in source:
+                result["city"] = city
+                break
 
-            break
-
-
-    dc=detect_datacenter(text)
+    dc = detect_datacenter(text)
 
     if dc:
-
-        result["datacenter"]=dc
-
+        result["datacenter"] = dc
 
     if not result["airport"] and result["datacenter"]:
-
-        result["airport"]=result["datacenter"]
-
+        result["airport"] = result["datacenter"]
 
     if not result["airport"]:
-
-        country_code=result["country"]
+        country_code = result["country"]
 
         if country_code in DEFAULT_AIRPORT:
-
-            result["airport"]=DEFAULT_AIRPORT[country_code]
-
+            result["airport"] = DEFAULT_AIRPORT[country_code]
 
     return result
