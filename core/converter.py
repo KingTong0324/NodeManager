@@ -150,90 +150,172 @@ class NodeConverter:
         return nodes
 
     def convert(self, text):
+        """
+        支持两种输入风格：
+        - 每个节点单独一行（或一行多个 ip:port）
+        - 多行块格式（节点信息以空行分隔）
+
+        本方法优先把输入按空行切分为块（block），每个 block 代表一个节点的完整描述（多行）。
+        如果没有空行分隔，则按行处理并支持行内多个 ip/port（兼容早期行为）。
+        """
         nodes = []
 
-        for line in text.splitlines():
-            if not line.strip():
-                continue
+        if not text or not text.strip():
+            return []
 
-            # 先解析与整行相关的元信息（只做一次）
-            node_info = parse_node_info(line) or {}
-            tls = node_info.get("tls", False)
-            asn = node_info.get("asn", "")
-            isp = node_info.get("isp", "")
+        # 先尝试将输入按空行分块 —— 使多行节点信息（带标签）能被整体解析
+        blocks = [b.strip() for b in re.split(r"\n\s*\n", text.strip()) if b.strip()]
 
-            # 位置/地理信息（供所有 IP 复用）
-            location = parse_location(line) or {}
-            # apply the same hint behavior as convert_line (保留原有 '#' hint 处理)
-            m = re.search(r"#\s*([^|]+(?:\|[^|]+)?)", line)
-            if m:
-                token = m.group(1).strip()
-                token = re.sub(r"^\d+[_\s-]*", "", token)
-                hint = parse_location(token) or {}
-                for k in ("country", "country_name", "country_display", "city", "airport", "datacenter"):
-                    if not location.get(k) and hint.get(k):
-                        location[k] = hint[k]
+        # 如果只有单一块且块中只有一行，则也支持行内多个 ip 的老行为
+        for block in blocks:
+            # 如果 block 包含多行或包含标签关键字，按 block 处理
+            if "\n" in block or any(k in block for k in ["IP地址", "端口", "IP原生位置", "网络延迟", "下载速度"]):
+                node_info = parse_node_info(block) or {}
+                tls = node_info.get("tls", False)
+                asn = node_info.get("asn", "")
+                isp = node_info.get("isp", "")
 
-            # 延迟/速度（供所有 IP 复用）
-            latency = parse_latency(line) or {}
-            speed = parse_speed(line) or {}
+                location = parse_location(block) or {}
+                # 保持原来对 '#' hint 的处理
+                m = re.search(r"#\s*([^|]+(?:\|[^|]+)?)", block)
+                if m:
+                    token = m.group(1).strip()
+                    token = re.sub(r"^\d+[_\s-]*", "", token)
+                    hint = parse_location(token) or {}
+                    for k in ("country", "country_name", "country_display", "city", "airport", "datacenter"):
+                        if not location.get(k) and hint.get(k):
+                            location[k] = hint[k]
 
-            # 从一行中找出所有 IP/port
-            ip_list = parse_ips(line)
-            # 如果没有匹配到任何 IP，保留原来行为：尝试使用旧的 parse_ip（兼容）
-            if not ip_list:
-                ip_single = parse_ip(line)
-                if ip_single:
-                    ip_list = [ip_single]
+                latency = parse_latency(block) or {}
+                speed = parse_speed(block) or {}
 
-            for ip_data in ip_list:
-                node = Node()
-                node.tls = tls
-                node.asn = asn
-                node.isp = isp
+                ip_list = parse_ips(block)
+                if not ip_list:
+                    ip_single = parse_ip(block)
+                    if ip_single:
+                        ip_list = [ip_single]
 
-                node.ip = ip_data.get("ip", "")
-                node.port = ip_data.get("port", "")
+                for ip_data in ip_list:
+                    node = Node()
+                    node.tls = tls
+                    node.asn = asn
+                    node.isp = isp
 
-                # 过滤无效节点（保持与原来逻辑一致）
-                if not node.ip or not node.port:
-                    continue
+                    node.ip = ip_data.get("ip", "")
+                    node.port = ip_data.get("port", "")
 
-                node.country = location.get("country", "")
-                node.country_name = location.get("country_name", "")
-                if not node.country_name:
-                    node.country_name = "其他"
-                node.country_display = location.get("country_display", "")
-                node.city = location.get("city", "")
-                node.native_location = location.get("native_location", "")
+                    if not node.ip or not node.port:
+                        continue
 
-                node.airport = (
-                    location.get("airport")
-                    or location.get("code")
-                    or location.get("airport_code")
-                    or ""
-                )
-                node.datacenter = (
-                    location.get("datacenter")
-                    or location.get("dc")
-                    or ""
-                )
-                if not node.airport and node.datacenter:
-                    node.airport = node.datacenter
-                if not node.airport:
-                    node.airport = self.get_default_airport(
-                        node.country,
-                        node.country_name
+                    node.country = location.get("country", "")
+                    node.country_name = location.get("country_name", "")
+                    if not node.country_name:
+                        node.country_name = "其他"
+                    node.country_display = location.get("country_display", "")
+                    node.city = location.get("city", "")
+                    node.native_location = location.get("native_location", "")
+
+                    node.airport = (
+                        location.get("airport")
+                        or location.get("code")
+                        or location.get("airport_code")
+                        or ""
                     )
+                    node.datacenter = (
+                        location.get("datacenter")
+                        or location.get("dc")
+                        or ""
+                    )
+                    if not node.airport and node.datacenter:
+                        node.airport = node.datacenter
+                    if not node.airport:
+                        node.airport = self.get_default_airport(
+                            node.country,
+                            node.country_name
+                        )
 
-                node.latency = latency.get("latency", "")
-                node.latency_value = latency.get("value")
-                node.speed = speed.get("speed", "")
-                node.speed_value = speed.get("value")
-                node.speed_unit = speed.get("unit", "")
-                node.speed_mbps = speed.get("mbps")
+                    node.latency = latency.get("latency", "")
+                    node.latency_value = latency.get("value")
+                    node.speed = speed.get("speed", "")
+                    node.speed_value = speed.get("value")
+                    node.speed_unit = speed.get("unit", "")
+                    node.speed_mbps = speed.get("mbps")
 
-                nodes.append(node)
+                    nodes.append(node)
+
+            else:
+                # block 为单行且没有明显标签 —— 支持行内多个 ip 的行为
+                ip_list = parse_ips(block)
+                if not ip_list:
+                    ip_single = parse_ip(block)
+                    if ip_single:
+                        ip_list = [ip_single]
+
+                # reuse line-level parsing for location/latency/speed
+                node_info = parse_node_info(block) or {}
+                tls = node_info.get("tls", False)
+                asn = node_info.get("asn", "")
+                isp = node_info.get("isp", "")
+                location = parse_location(block) or {}
+                # hint
+                m = re.search(r"#\s*([^|]+(?:\|[^|]+)?)", block)
+                if m:
+                    token = m.group(1).strip()
+                    token = re.sub(r"^\d+[_\s-]*", "", token)
+                    hint = parse_location(token) or {}
+                    for k in ("country", "country_name", "country_display", "city", "airport", "datacenter"):
+                        if not location.get(k) and hint.get(k):
+                            location[k] = hint[k]
+                latency = parse_latency(block) or {}
+                speed = parse_speed(block) or {}
+
+                for ip_data in ip_list:
+                    node = Node()
+                    node.tls = tls
+                    node.asn = asn
+                    node.isp = isp
+
+                    node.ip = ip_data.get("ip", "")
+                    node.port = ip_data.get("port", "")
+
+                    if not node.ip or not node.port:
+                        continue
+
+                    node.country = location.get("country", "")
+                    node.country_name = location.get("country_name", "")
+                    if not node.country_name:
+                        node.country_name = "其他"
+                    node.country_display = location.get("country_display", "")
+                    node.city = location.get("city", "")
+                    node.native_location = location.get("native_location", "")
+
+                    node.airport = (
+                        location.get("airport")
+                        or location.get("code")
+                        or location.get("airport_code")
+                        or ""
+                    )
+                    node.datacenter = (
+                        location.get("datacenter")
+                        or location.get("dc")
+                        or ""
+                    )
+                    if not node.airport and node.datacenter:
+                        node.airport = node.datacenter
+                    if not node.airport:
+                        node.airport = self.get_default_airport(
+                            node.country,
+                            node.country_name
+                        )
+
+                    node.latency = latency.get("latency", "")
+                    node.latency_value = latency.get("value")
+                    node.speed = speed.get("speed", "")
+                    node.speed_value = speed.get("value")
+                    node.speed_unit = speed.get("unit", "")
+                    node.speed_mbps = speed.get("mbps")
+
+                    nodes.append(node)
 
         return self.assign_number(nodes)
 
