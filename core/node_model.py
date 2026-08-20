@@ -123,7 +123,7 @@ class Node:
         else:
             ip_port = f"{self.ip}:{self.port}"
 
-        return {
+        variables = {
             "ip": self.ip,
             "port": self.port,
             "ip_port": ip_port,
@@ -149,6 +149,12 @@ class Node:
             "speed_unit": self.speed_unit,
             "speed_mbps": self.speed_mbps
         }
+
+        # Fallback: if country_display is missing but we have an airport code, use airport as display
+        if not variables.get("country_display") and variables.get("airport"):
+            variables["country_display"] = variables.get("airport")
+
+        return variables
 
     def render(self, template):
 
@@ -194,7 +200,8 @@ class Node:
 
         template = self.load_format(format_name)
 
-        if self.country_name == "其他" and not self.airport and not self.city:
+        # Only fall back to simple ip:port when we truly have no location context
+        if self.country_name == "其他" and not (self.airport or self.city or self.country_display):
 
             if ":" in self.ip:
                 rendered = (
