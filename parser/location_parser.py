@@ -317,52 +317,51 @@ def detect_country(text):
                 str(info)
             ]
 
+        # iterate over aliases and match each one individually
         for alias in aliases:
             alias = str(alias).lower().strip()
 
             if not alias:
                 continue
 
-        if len(alias) <= 2:
-            pattern = (
-                r"(?<![a-z])"
-                +
-                re.escape(alias)
-                +
-                r"(?![a-z])"
-            )
+            if len(alias) <= 2:
+                pattern = (
+                    r"(?<![a-z])"
+                    + re.escape(alias)
+                    + r"(?![a-z])"
+                )
 
-            match = re.search(
-                pattern,
-                source
-            )
+                match = re.search(
+                    pattern,
+                    source
+                )
 
-        else:
-            match = re.search(
-                r"(?<![a-z])"
-                + re.escape(alias)
-                + r"(?![a-z])",
-                source
-            )
+            else:
+                match = re.search(
+                    r"(?<![a-z])"
+                    + re.escape(alias)
+                    + r"(?![a-z])",
+                    source
+                )
 
-        if match:
-            return {
-                "country": code,
-                "country_name":
-                    info.get("name", "")
-                    if isinstance(info, dict)
-                    else str(info),
-                "country_display":
-                    (
-                        info.get("flag", "")
-                        +
-                        " "
-                        +
+            if match:
+                return {
+                    "country": code,
+                    "country_name":
                         info.get("name", "")
-                    )
-                    if isinstance(info, dict)
-                    else str(info)
-            }
+                        if isinstance(info, dict)
+                        else str(info),
+                    "country_display":
+                        (
+                            info.get("flag", "")
+                            +
+                            " "
+                            +
+                            info.get("name", "")
+                        )
+                        if isinstance(info, dict)
+                        else str(info)
+                }
     return {}
 
 
