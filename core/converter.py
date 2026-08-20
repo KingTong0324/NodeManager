@@ -219,17 +219,8 @@ class NodeConverter:
     def assign_number(self, nodes):
         # 先清空计数器
         self.reset_counter()
-        # 按节点库国家顺序排序
-        country_order = NodeDatabase().country_order()
-        nodes.sort(
-            key=lambda node: (
-                country_order.get(node.country_name, 99),
-                node.airport or "",
-                node.ip or ""
-            )
-        )
+        # 保持输入顺序，不对节点进行全局排序；按出现顺序为每个国家编号
         for node in nodes:
-            # 统一按国家编号（所有国家采用相同逻辑）
             key = node.country_name or "OTHER"
             self.counters[key] += 1
             node.number = f"{self.counters[key]:02d}"
