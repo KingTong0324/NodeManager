@@ -65,25 +65,25 @@ class NodeManager:
 
         return self.saved_nodes
 
-  def format_nodes(self, nodes):
-      """
-      Format a list of Node objects into the display/output text.
+    def format_nodes(self, nodes):
+        """
+        Format a list of Node objects into the display/output text.
   
-      Behavior:
-      - Assign per-country numbers in the order nodes are provided (preserve order).
-      - Use Node.output_line to render each node so country_display/flag and template rules apply.
-      """
-      result = []
-      counters = defaultdict(int)
+        Behavior:
+        - Assign per-country numbers in the order nodes are provided (preserve order).
+        - Use Node.output_line to render each node so country_display/flag and template rules apply.
+        """
+        result = []
+        counters = defaultdict(int)
 
-      for node in nodes:
-          # per-country counting by display name (preserve order)
-          country_key = node.country_name or node.country or "其他"
-          counters[country_key] += 1
-          node.number = f"{counters[country_key]:02d}"
+        for node in nodes:
+            # per-country counting by display name (preserve order)
+            country_key = node.country_name or node.country or "其他"
+            counters[country_key] += 1
+            node.number = f"{counters[country_key]:02d}"
 
-          # render via Node.output_line so templates and country_display are used
-          rendered = node.output_line("default")
-          result.append(rendered)
+            # render via Node.output_line so templates and country_display are used
+            rendered = node.output_line("default")
+            result.append(rendered)
 
-      return "\n".join(result)
+        return "\n".join(result)
