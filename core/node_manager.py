@@ -65,31 +65,25 @@ class NodeManager:
 
         return self.saved_nodes
 
-    def format_nodes(self, nodes):
-        """
-        Format a list of Node objects into the display/output text.
+def format_nodes(self, nodes):
+    """
+    Format a list of Node objects into the display/output text.
 
-        This implementation ensures:
-        - Each node keeps its own parsed speed (no shared/overwritten speed).
-        - Numbering is assigned per country in the order of the provided nodes
-          (so numbering won't be reset/overwritten unexpectedly).
-        - Uses node.output_line to render full template (includes country_display/flag and country_name).
-        """
-        result = []
-        counters = defaultdict(int)
+    Behavior:
+    - Assign per-country numbers in the order nodes are provided (preserve order).
+    - Use Node.output_line to render each node so country_display/flag and template rules apply.
+    """
+    result = []
+    counters = defaultdict(int)
 
-        for node in nodes:
-            # Determine a key for per-country counting
-            country_key = node.country_name or node.country or "其他"
-            counters[country_key] += 1
-            number = f"{counters[country_key]:02d}"
+    for node in nodes:
+        # per-country counting by display name (preserve order)
+        country_key = node.country_name or node.country or "其他"
+        counters[country_key] += 1
+        node.number = f"{counters[country_key]:02d}"
 
-            # assign the number back to node so templates use it
-            node.number = number
+        # render via Node.output_line so templates and country_display are used
+        rendered = node.output_line("default")
+        result.append(rendered)
 
-            # Use node.output_line which leverages the configured template and includes country_display
-            rendered = node.output_line("default")
-
-            result.append(rendered)
-
-        return "\n".join(result)
+    return "\n".join(result)
