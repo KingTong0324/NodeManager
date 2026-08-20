@@ -73,7 +73,7 @@ class NodeManager:
         - Each node keeps its own parsed speed (no shared/overwritten speed).
         - Numbering is assigned per country in the order of the provided nodes
           (so numbering won't be reset/overwritten unexpectedly).
-        - Uses airport/datacenter as the country code when available (e.g. HKG).
+        - Uses node.output_line to render full template (includes country_display/flag and country_name).
         """
         result = []
         counters = defaultdict(int)
@@ -84,28 +84,12 @@ class NodeManager:
             counters[country_key] += 1
             number = f"{counters[country_key]:02d}"
 
-            # Build ip_port (handle IPv6 brackets)
-            if ":" in node.ip and not node.ip.replace(':','').isdigit():
-                # crude IPv6 detection - keep existing behavior from Node.get_variables
-                if ":" in node.ip:
-                    ip_port = f"[{node.ip}]:{node.port}"
-                else:
-                    ip_port = f"{node.ip}:{node.port}"
-            else:
-                ip_port = f"{node.ip}:{node.port}"
+            # assign the number back to node so templates use it
+            node.number = number
 
-            # Use airport/datacenter as short code if present, otherwise fall back to country_name or country
-            code = node.airport or node.datacenter or node.country_name or node.country or ""
+            # Use node.output_line which leverages the configured template and includes country_display
+            rendered = node.output_line("default")
 
-            # Ensure speed uses the node's own parsed speed and has no spaces
-            speed = (node.speed or "").replace(" ", "")
-
-            # Compose line
-            if speed:
-                line = f"{ip_port}#{number}_{code}|{speed}"
-            else:
-                line = f"{ip_port}#{number}_{code}"
-
-            result.append(line)
+            result.append(rendered)
 
         return "\n".join(result)
